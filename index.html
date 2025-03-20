@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/elements.css">
+    <link rel="stylesheet" href="assets/css/classes.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        html {
+            scroll-behavior: smooth; /* Rolagem suave */
+        }
+    </style>
+</head>
+
+<body>
+    <aside>
+        <input id="close-menu" class="close-menu" type="checkbox" aria-label="Close menu" role="button">
+        <label class="close-menu-label" for="close-menu" title="close menu">☰</label> <!-- Ícone de menu -->
+        <div class="menu white-bg" id="header">
+            <div class="main-content menu-content">
+                <h1 onclick="getElementById('close-menu').checked = false;" class="Logo">
+                    <a href="#home" onclick="window.location.reload()">
+                        <img src="assets/img/Logo.jpg" alt="Logo" class="logo">
+                    </a>
+                </h1>
+                <nav>
+                    <ul onclick="getElementById('close-menu').checked = false;">
+                        <li><a href="#resultados" class="destaque">Resultados</a></li> <!-- Destacado em bege -->
+                        <li><a href="#contato" class="destaque">Contato</a></li> <!-- Destacado em bege -->
+                    </ul>
+                </nav>
+                <!-- Botão de Toggle para Mobile -->
+                <label class="menu-toggle" for="close-menu">
+                    <div class="menu-icon"></div>
+                </label>
+            </div>
+        </div>
+    </aside>
+
+    <section id="home" class="intro main-bg section">
+        <div class="intro-content">
+            <div class="intro-img">
+                <img src="assets/img/Clinica.jpg" alt="Imagem da Clínica">
+            </div>
+            <!-- Overlay de texto -->
+            <div class="intro-text-overlay">
+                <h1>Transforme seu sorriso com a perfeição das Lentes em Resina</h1>
+                <p>
+                    <span class="text-bege">Realce seu sorriso com qualidade e confiança</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resultados" class="white-bg section"> <!-- Alterado o id para "resultados" -->
+        <div class="main-content grid-one-content">
+            <div class="grid-two-columns">
+                <!-- Coluna da esquerda (título) -->
+                <div class="left-column">
+                    <h2 class="grid-main-heading">Resultados</h2>
+                </div>
+
+                <!-- Coluna da direita (texto) -->
+                <div class="right-column">
+                    <p class="grid-description">
+                        Explore nossa galeria para ver os resultados impressionantes das lentes em resina aplicadas
+                        pelos nossos especialistas. Cada sorriso é uma prova do nosso compromisso com a estética e a
+                        qualidade, mostrando como nossas facetas em resina podem transformar seu visual com naturalidade
+                        e brilho.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Container para as 3 imagens -->
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="assets/img/Foto1.jpg" alt="Resultado 1">
+                </div>
+                <div class="image-item">
+                    <img src="assets/img/img-resultados-7.webp" alt="Resultado 4">
+                </div>
+                <div class="image-item">
+                    <img src="assets/img/Foto2.jpg" alt="Resultado 2">
+                </div>
+                <div class="image-item">
+                    <img src="assets/img/Foto3.jpg" alt="Resultado 3">
+                </div>
+                
+                <div class="image-item">
+                    <img src="assets/img/Foto2.jpg" alt="Resultado 5">
+                </div>
+                <div class="image-item">
+                    <img src="assets/img/Foto3.jpg" alt="Resultado 6">
+                </div>
+            </div>
+
+            <!-- Botão "Agenda Aberta" -->
+            <div class="agenda-button-container">
+                <a href="http://wa.me/5531991242925" class="agenda-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Agenda Aberta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="intro main-bg section"> <!-- Alterado o id para "contato" -->
+        <div class="avaliacao-container">
+            <p class="text-avaliacao">Faça uma avaliação aqui</p>
+        </div>
+        <div class="main-content intro-content">
+            <div class="intro-text-content">
+                <h2 class="text">Seu sorriso é nossa prioridade. Transforme-o com a nossa expertise e confiança</h2>
+                
+                <!-- Botão do WhatsApp e horários -->
+                <div class="contact-info">
+                    <a href="http://wa.me/5531991242925" class="whatsapp-button" target="_blank">
+                        <i class="fab fa-whatsapp"></i> (31) 99124-2925
+                    </a>
+                    <p class="horarios">
+                        Segunda a sexta das 8:00 às 18:00<br>
+                        Sábado das 8:00 às 15:00
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="footer white-bg">
+        <div class="footer-container">
+            <!-- Coluna 1: Informações da Empresa -->
+            <div class="footer-column">
+                <img src="assets/img/Logo.jpg" alt="Logo Tatuapé Sorriso" class="footer-logo">
+                <p>Romeiro e Lacerda LTDA<br>
+                    50.890.310/0001-05<br>
+                    <br>CRO 139975
+                </p>
+            </div>
+
+            <!-- Coluna 3: Unidade Minas Gerais -->
+            <div class="footer-column">
+                <p><strong>UNIDADE MINAS GERAIS
+                        CNPJ:</strong><br> 55.990.681/0001-74</p>
+                Rua Santa Catarina, 1627, sala 603<br>
+                Belo Horizonte - MG<br>
+                CEP: 30170-081<br><br>
+                <strong>(31) 98540-1845</strong></p>
+            </div>
+
+            <!-- Coluna 4: Ícone do Instagram -->
+            <div class="footer-column">
+                <a href="https://www.instagram.com/romeiroelacerda.odontologia/" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i> <!-- Ícone do Instagram -->
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <a id="whatsapp-icon" class="back-to-top" href="http://wa.me/5531991242925" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

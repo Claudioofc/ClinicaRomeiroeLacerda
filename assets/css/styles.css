@@ -1,0 +1,631 @@
+:root {
+  --gap: 3rem;
+  --white-color: #ffffff;
+  --primary-color: #000000;
+  --secondary-color: #efbf56;
+  /* Bege */
+  --light-gray-color: #cccccc;
+  --header-bg-color: rgba(245, 245, 245, 0.9);
+  /* Cinza claro com transparência */
+  --toggle-color: #333333;
+  /* Cinza escuro para o toggle */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Urbanist", sans-serif;
+  font-size: 2rem;
+  color: var(--primary-color);
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Urbanist", sans-serif;
+}
+
+h1 {
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+p {
+  margin-bottom: 2rem;
+}
+
+.main-bg {
+  background-color: #000000;
+  color: var(--white-color);
+}
+
+.white-bg {
+  background: var(--white-color);
+  color: var(--primary-color);
+}
+
+.main-content {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 10rem var(--gap);
+}
+
+.section {
+  min-height: 65vh;
+  padding: 5rem 0;
+  text-align: center;
+}
+
+/* Menu */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--header-bg-color);
+  /* Cinza claro com transparência */
+  border-bottom: 0.1rem solid var(--light-gray-color);
+  padding: 1rem 0;
+  backdrop-filter: blur(10px);
+  /* Efeito de desfoque */
+}
+
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.menu h1 {
+  font-size: 2.3rem;
+  color: var(--primary-color);
+  /* Texto preto para contraste */
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.menu ul li a {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  /* Texto preto para contraste */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.menu ul li a:hover {
+  color: var(--secondary-color);
+  /* Bege ao passar o mouse */
+}
+
+/* Destaque para os textos "Resultados" e "Contato" */
+.destaque {
+  color: var(--secondary-color);
+  /* Bege (#efbf56) */
+  font-weight: bold;
+}
+
+/* Header com Efeito Shrink */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--header-bg-color);
+  /* Cinza claro com transparência */
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+  padding: 2rem 0;
+  height: 160px;
+  border: none;
+  backdrop-filter: blur(10px);
+  /* Efeito de desfoque */
+}
+
+#header.shrink {
+  padding: 1.5rem 0;
+  height: 80px;
+}
+
+#header .logo {
+  width: 120px;
+  height: auto;
+  border-radius: 100%;
+  transition: width 0.3s ease-in-out;
+}
+
+#header.shrink .logo {
+  width: 60px;
+}
+
+#header nav ul li a {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  /* Texto preto para contraste */
+  transition: font-size 0.3s ease-in-out;
+}
+
+#header.shrink nav ul li a {
+  font-size: 1.5rem;
+}
+
+/* Seção de Introdução */
+#home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+  filter: blur(2px);
+}
+
+.intro-text-overlay {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  padding: 0 2rem;
+}
+
+.intro-text-overlay h1 {
+  font-size: 52px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.intro-text-overlay p {
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+
+/* Grid de Imagens */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas normais */
+  gap: var(--gap);
+  margin-top: 2rem;
+}
+
+.image-item {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Efeito de Escurecimento ao Passar o Mouse */
+.image-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Escurecimento */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.image-item:hover::before {
+  opacity: 1; /* Mostra o escurecimento ao passar o mouse */
+}
+
+.image-item:hover img {
+  filter: brightness(0.8); /* Escurece a imagem */
+}
+
+/* Botão de Agenda */
+.agenda-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.agenda-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #333333;
+  color: #efbf56;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.agenda-button i {
+  margin-right: 0.5rem;
+  font-size: 1.8rem;
+  color: white;
+  background: #25D366;
+  border-radius: 50%;
+  border: 0.6rem solid #25D366;
+}
+
+.agenda-button:hover {
+  transform: scale(1.1);
+}
+
+/* Seção de Contato */
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.avaliacao-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+  margin-top: 50px;
+}
+
+.text-bege {
+  color: #efbf56;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.text-avaliacao {
+  color: #efbf56;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 59px;
+}
+
+.whatsapp-button {
+  display: inline-flex;
+  align-items: center;
+  background-image: linear-gradient(90deg, #5CD466 0%, #2E6A33 100%);
+  color: white;
+  padding: 1.5rem 3rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-button i {
+  margin-right: 1rem;
+  font-size: 2.5rem;
+}
+
+.whatsapp-button:hover {
+  transform: scale(1.05);
+}
+
+/* Botão do WhatsApp Flutuante */
+#whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
+
+#whatsapp-icon i {
+  font-size: 30px;
+}
+
+/* Animação de Explosão */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Classe para aplicar a animação */
+.explode-effect {
+  animation: explode 0.5s ease-out forwards;
+}
+
+.horarios {
+  color: white;
+  font-size: 1.8rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--white-color);
+  padding: 2rem;
+  border-top: 1px solid #ccc;
+  font-size: 1.8rem;
+  color: #000;
+  text-align: center;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.footer-column:last-child {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-logo {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  max-width: 120px;
+}
+
+.footer p {
+  margin: 0.1rem 0;
+  line-height: 1.1;
+  color: #000;
+}
+
+.footer a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--secondary-color);
+}
+
+.fa-instagram {
+  font-size: 2.5rem;
+  color: #E1306C;
+  transition: transform 0.3s ease;
+}
+
+.fa-instagram:hover {
+  transform: scale(1.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2.5rem;
+  }
+
+  /* Ajustes para o menu em mobile */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .menu-icon {
+    width: 30px;
+    height: 3px;
+    background-color: var(--toggle-color);
+    /* Cinza escuro */
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    width: 30px;
+    height: 3px;
+    background-color: var(--toggle-color);
+    /* Cinza escuro */
+    position: absolute;
+    transition: all 0.3s ease;
+  }
+
+  .menu-icon::before {
+    transform: translateY(-8px);
+  }
+
+  .menu-icon::after {
+    transform: translateY(8px);
+  }
+
+  .close-menu:checked~.menu .menu-icon {
+    background-color: transparent;
+    /* Remove a linha do meio */
+  }
+
+  .close-menu:checked~.menu .menu-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .close-menu:checked~.menu .menu-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .menu ul {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #f5f5f5;
+    /* Cinza bem claro */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .close-menu:checked~.menu ul {
+    display: flex;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Layout responsivo em mobile */
+    max-width: 100%; /* Remove a limitação de largura em mobile */
+  }
+
+  /* Ajustes para o header em mobile */
+  #header {
+    padding: 1rem 0;
+  }
+
+  #header.shrink {
+    padding: 1rem 0;
+    height: 80px;
+  }
+
+  #header .logo {
+    width: 80px;
+  }
+
+  #header.shrink .logo {
+    width: 60px;
+  }
+
+  #header nav ul li a {
+    font-size: 1.8rem;
+    font-weight: 500;
+  }
+
+  #header.shrink nav ul li a {
+    font-size: 1.5rem;
+  }
+
+  /* Ajustes para o grid de imagens em mobile */
+  .grid-two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  /* Ajustes para o texto em mobile */
+  .text {
+    font-size: 22px;
+  }
+
+  /* Ajustes para o footer em mobile */
+  .footer-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-column {
+    min-width: 100%;
+  }
+
+  @keyframes explode {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.5);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  /* Classe para aplicar a animação de clique */
+  .explode-effect {
+    animation: explode 0.5s ease-out;
+  }
+}
