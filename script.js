@@ -17,10 +17,8 @@ window.addEventListener('scroll', function () {
     }
 });
 
-// Seleciona o ícone do WhatsApp pelo ID
+// Efeito de clique no ícone do WhatsApp
 const whatsappIcon = document.getElementById('whatsapp-icon');
-
-// Adiciona um evento de clique ao ícone do WhatsApp
 if (whatsappIcon) {
     whatsappIcon.addEventListener('click', function (event) {
         event.preventDefault(); // Evita o comportamento padrão do link
@@ -35,12 +33,12 @@ if (whatsappIcon) {
 
         // Redireciona para o WhatsApp após a animação
         setTimeout(() => {
-            window.location.href = 'http://wa.me/5531991242925'; // Substitua SEUNUMERO pelo seu número
+            window.location.href = 'http://wa.me/5531991242925';
         }, 500); // Tempo correspondente à duração da animação
     });
 }
 
-// Função para evitar a rolagem ao topo ao clicar no toggle do menu
+// Bloquear rolagem ao abrir o menu
 document.addEventListener('DOMContentLoaded', function () {
     const closeMenuCheckbox = document.getElementById('close-menu');
     const closeMenuLabel = document.querySelector('.close-menu-label');
@@ -66,25 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
-// Função para alternar a visibilidade do texto nas caixas de tipos de lentes
-function toggleTexto(element) {
-    // Encontra o título (h3) dentro da caixa clicada
-    const titulo = element.querySelector('.lentes-tipo-subtitle');
-    // Encontra o texto oculto dentro da caixa clicada
-    const texto = element.querySelector('.hidden-texto');
-
-    // Alterna a classe 'active' no título
-    titulo.classList.toggle('active');
-
-    // Alterna a visibilidade do texto
-    if (texto.style.display === "block") {
-        texto.style.display = "none";
-    } else {
-        texto.style.display = "block";
-    }
-}
-
-// Função para ativar a aba Clínico Geral ao clicar no link do menu
+// Ativar a aba "Clínico Geral" ao clicar no link do menu
 document.addEventListener('DOMContentLoaded', function () {
     const clinicoGeralLink = document.querySelector('a[href="#tab-2"]');
     if (clinicoGeralLink) {
@@ -133,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Função para rolar suavemente para o topo ao clicar na logo
+// Rolagem suave ao clicar na logo
 document.addEventListener('DOMContentLoaded', function () {
     const logoLink = document.getElementById('logo-link');
 
