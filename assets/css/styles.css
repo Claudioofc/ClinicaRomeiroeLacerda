@@ -168,6 +168,7 @@ p {
   height: auto;
   border-radius: 100%;
   transition: width 0.3s ease-in-out;
+  cursor: pointer;
 }
 
 #header.shrink .logo {
@@ -338,7 +339,7 @@ p {
 }
 
 .lentes-title {
-  font-size: 47px;
+  font-size: 42px;
   font-weight: bold;
   color: #000;
 }

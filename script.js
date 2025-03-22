@@ -132,3 +132,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+// Função para rolar suavemente para o topo ao clicar na logo
+document.addEventListener('DOMContentLoaded', function () {
+    const logoLink = document.getElementById('logo-link');
+
+    if (logoLink) {
+        logoLink.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita o comportamento padrão do link
+
+            // Rola a página suavemente para o topo
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
