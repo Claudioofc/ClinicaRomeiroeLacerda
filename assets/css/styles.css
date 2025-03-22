@@ -2,13 +2,10 @@
   --gap: 3rem;
   --white-color: #ffffff;
   --primary-color: #000000;
-  --secondary-color: #efbf56;
-  /* Bege */
+  --secondary-color: #efbf56; /* Bege */
   --light-gray-color: #cccccc;
-  --header-bg-color: rgba(245, 245, 245, 0.9);
-  /* Cinza claro com transparência */
-  --toggle-color: #333333;
-  /* Cinza escuro para o toggle */
+  --header-bg-color: rgba(245, 245, 245, 0.9); /* Cinza claro com transparência */
+  --toggle-color: #333333; /* Cinza escuro para o toggle */
 }
 
 * {
@@ -19,7 +16,7 @@
 
 html {
   font-size: 62.5%;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; /* Rolagem suave */
 }
 
 body {
@@ -29,12 +26,16 @@ body {
   line-height: 1.5;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+body.menu-open {
+  overflow: hidden; /* Bloqueia a rolagem quando o menu está aberto */
+}
+
+.menu ul {
+  max-height: 100vh; /* Garante que o menu não ultrapasse a altura da tela */
+  overflow-y: auto; /* Adiciona scroll apenas ao menu, se necessário */
+}
+
+h1, h2, h3, h4, h5, h6 {
   font-family: "Urbanist", sans-serif;
 }
 
@@ -43,9 +44,17 @@ h1 {
 }
 
 h2 {
-  font-size: 4rem;
+  font-size: 60px;
   margin-bottom: 2rem;
   font-weight: 700;
+}
+
+.grid-main-heading {
+  font-size: 55px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+
+  text-transform: uppercase;
 }
 
 h3 {
@@ -69,12 +78,12 @@ p {
 .main-content {
   max-width: 120rem;
   margin: 0 auto;
-  padding: 10rem var(--gap);
+  padding: 5rem var(--gap);
 }
 
 .section {
-  min-height: 65vh;
-  padding: 5rem 0;
+  min-height: 50vh;
+  padding: 3rem 0;
   text-align: center;
 }
 
@@ -87,11 +96,17 @@ p {
   width: 100%;
   z-index: 1000;
   background: var(--header-bg-color);
-  /* Cinza claro com transparência */
   border-bottom: 0.1rem solid var(--light-gray-color);
   padding: 1rem 0;
   backdrop-filter: blur(10px);
-  /* Efeito de desfoque */
+}
+
+.left-column, .grid-main-heading {
+  text-align: start;
+}
+
+.right-column, .grid-description {
+  text-align: start;
 }
 
 .menu-content {
@@ -104,7 +119,6 @@ p {
 .menu h1 {
   font-size: 2.3rem;
   color: var(--primary-color);
-  /* Texto preto para contraste */
 }
 
 .menu ul {
@@ -116,20 +130,16 @@ p {
 .menu ul li a {
   font-size: 1.8rem;
   color: var(--primary-color);
-  /* Texto preto para contraste */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .menu ul li a:hover {
   color: var(--secondary-color);
-  /* Bege ao passar o mouse */
 }
 
-/* Destaque para os textos "Resultados" e "Contato" */
 .destaque {
   color: var(--secondary-color);
-  /* Bege (#efbf56) */
   font-weight: bold;
 }
 
@@ -140,14 +150,12 @@ p {
   left: 0;
   width: 100%;
   background: var(--header-bg-color);
-  /* Cinza claro com transparência */
   z-index: 1000;
   transition: all 0.3s ease-in-out;
   padding: 2rem 0;
   height: 160px;
   border: none;
   backdrop-filter: blur(10px);
-  /* Efeito de desfoque */
 }
 
 #header.shrink {
@@ -166,16 +174,20 @@ p {
   width: 60px;
 }
 
+/* Estilo para os links do menu no header */
 #header nav ul li a {
   font-size: 1.8rem;
-  color: var(--primary-color);
-  /* Texto preto para contraste */
-  transition: font-size 0.3s ease-in-out;
+  color: #000; /* Letras brancas */
+  text-decoration: none;
+  transition: color 0.3s ease; /* Transição suave para o hover */
 }
 
-#header.shrink nav ul li a {
-  font-size: 1.5rem;
+/* Efeito de hover nos links do menu */
+#header nav ul li a:hover {
+  color: rgb(239, 191, 86); /* Cor do hover */
 }
+
+
 
 /* Seção de Introdução */
 #home {
@@ -213,31 +225,49 @@ p {
 }
 
 .intro-text-overlay h1 {
-  font-size: 52px;
+  font-size: 48px;
   margin-bottom: 2rem;
   font-weight: 700;
 }
+
 
 .intro-text-overlay p {
   font-size: 2rem;
   color: var(--secondary-color);
 }
 
+.text h2 {
+  font-size: 48px;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
 /* Grid de Imagens */
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas em telas normais */
-  gap: var(--gap);
-  margin-top: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.tratamentos-right img {
+  width: 200px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .image-item {
   width: 100%;
-  height: auto;
+  height: 200px;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-item img {
@@ -255,25 +285,25 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Escurecimento */
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 10px;
 }
 
 .image-item:hover::before {
-  opacity: 1; /* Mostra o escurecimento ao passar o mouse */
+  opacity: 1;
 }
 
 .image-item:hover img {
-  filter: brightness(0.8); /* Escurece a imagem */
+  filter: brightness(0.8);
 }
 
 /* Botão de Agenda */
 .agenda-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .agenda-button {
@@ -281,9 +311,9 @@ p {
   align-items: center;
   background-color: #333333;
   color: #efbf56;
-  padding: 1rem 2rem;
+  padding: 1.2rem 1.8rem;
   text-decoration: none;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   transition: transform 0.3s ease;
 }
@@ -301,6 +331,310 @@ p {
   transform: scale(1.1);
 }
 
+/* Estilo para o título "Lentes de Resina" */
+.lentes-title-container {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.lentes-title {
+  font-size: 47px;
+  font-weight: bold;
+  color: #000;
+}
+
+.lentes-title a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Estilo para o título "O que é?" */
+.lentes-subtitle {
+  font-size: 30px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+/* Estilo para o texto descritivo */
+.lentes-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  text-align: left;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Container para imagens e tipos de lentes */
+.lentes-grid {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.lentes-left {
+  flex: 1;
+}
+
+.lentes-right {
+  flex: 1;
+  margin-top: 2rem;
+}
+
+/* Para telas maiores */
+.lentes-images {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start; /* Alinhar à esquerda */
+}
+
+.lentes-image-item img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para a seção "Tipos de Lentes de Resina" */
+.lentes-tipos {
+  flex: 1;
+  text-align: left;
+}
+
+/* Estilo para o título "Tipos de Lentes de Resina" */
+.lentes-tipos-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+/* Estilo para as caixas de tipos de lentes */
+.lentes-tipo-box {
+  background-color: #ffffff;
+
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+/* Estilo para os títulos das caixas de tipos de lentes */
+.lentes-tipo-subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(239, 191, 86); /* Cor das letras */
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+  background-color: #000000; /* Fundo preto */
+  padding: 10px 15px; /* Adiciona um pouco de espaço interno */
+  
+  text-transform: uppercase;
+}
+
+
+/* Sinal de + padrão */
+.lentes-tipo-subtitle::after {
+  content: " +";
+  font-size: 24px;
+  color: rgb(239, 191, 86); /* Cor do sinal de + */
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+/* Sinal de - quando a caixa está aberta */
+.lentes-tipo-subtitle.active::after {
+  content: " -";
+}
+
+/* Efeito de hover no sinal de + */
+.lentes-tipo-subtitle:hover::after {
+  transform: rotate(90deg);
+}
+
+/* Estilo para o texto oculto */
+.hidden-texto {
+  display: none;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  margin-top: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 700;
+  width: 100%;
+  text-align: left;
+}
+
+/* Mostrar texto ao clicar */
+.show-texto {
+  display: block;
+}
+
+/* Seção de Tratamentos */
+#tratamentos {
+  padding: 5rem 0;
+  background-color: #fefcf7; /* Cor de fundo da seção */
+}
+
+.tratamentos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.tratamentos-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-align: left; /* Alinhar o título à esquerda */
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.tratamentos-title span {
+    /* Remova text-transform: uppercase; se existir */
+    font-size: 48px; /* Mantenha o tamanho da fonte */
+    font-weight: 700; /* Mantenha o peso da fonte */
+    color: var(--primary-color); /* Mantenha a cor */
+}
+
+.tratamentos-text {
+  font-size: 18px;
+  color: var(--primary-color);
+  text-align: left; /* Alinhar o texto à esquerda */
+  margin-bottom: 3rem;
+  line-height: 1.6; /* Ajusta o espaçamento entre as linhas */
+}
+
+.tratamentos-text br {
+  display: block; /* Garante que a quebra de linha funcione */
+}
+
+/* Container para conteúdo e imagem */
+.tratamentos-content {
+  display: flex;
+  gap: 2rem; /* Espaço entre o conteúdo e a imagem */
+  align-items: center; /* Centralizar verticalmente */
+}
+
+/* Div para o conteúdo (lado esquerdo) */
+.tratamentos-left {
+  flex: 2; /* Ocupa mais espaço */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Espaço entre as caixas */
+}
+
+/* Estilos para as abas */
+.tabs {
+  width: 100%;
+  text-align: left;
+}
+
+.tabs-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tab-button.active {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.tab-button:hover {
+  background-color: var(--primary-color);
+  
+}
+
+.tabs-content {
+  width: 100%;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Estilo para os parágrafos dentro das abas ativas */
+.tab-content.active p {
+  background-color: white; /* Fundo branco */
+  padding: 1rem; /* Adiciona um pouco de espaço interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  margin-bottom: -1rem; /* Espaço entre os parágrafos */
+}
+
+/* Div para a imagem (lado direito) */
+.tratamentos-img {
+  flex: 1; /* Ocupa menos espaço */
+  max-width: 484px; /* Largura máxima da imagem */
+}
+
+.tratamentos-img img {
+  width: 500px; /* Largura fixa */
+  height: 300px; /* Altura fixa */
+  object-fit: cover; /* Garante que a imagem cubra o espaço */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .tratamentos-content {
+    flex-direction: column; /* Empilha conteúdo e imagem em telas menores */
+  }
+
+  .tratamentos-img {
+    order: -1; /* Coloca a imagem acima do conteúdo em telas menores */
+    margin-bottom: 2rem; /* Espaço entre a imagem e o conteúdo */
+    max-width: 100%; /* Largura total em telas menores */
+  }
+
+  .tratamentos-img img {
+    width: 100%; /* Largura total em telas menores */
+    height: auto; /* Altura automática para manter a proporção */
+  }
+
+  .tabs-buttons {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    width: 100%;
+  }
+}
+
 /* Seção de Contato */
 #contact {
   display: flex;
@@ -313,26 +647,22 @@ p {
 .avaliacao-container {
   width: 100%;
   text-align: center;
-  margin-bottom: 30px;
-  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 .text-bege {
   color: #efbf56;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
-  margin-bottom: 20px;
-  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .text-avaliacao {
   color: #efbf56;
-  font-size: 3rem;
+  font-size: 27px;
   font-weight: bold;
-}
 
-.text {
-  font-size: 59px;
 }
 
 .whatsapp-button {
@@ -340,17 +670,17 @@ p {
   align-items: center;
   background-image: linear-gradient(90deg, #5CD466 0%, #2E6A33 100%);
   color: white;
-  padding: 1.5rem 3rem;
-  font-size: 2rem;
+  padding: 1rem 2rem;
+  font-size: 30px;
   font-weight: bold;
   text-decoration: none;
-  margin-top: 2rem;
+  margin-top: 1rem;
   transition: transform 0.3s ease;
 }
 
 .whatsapp-button i {
   margin-right: 1rem;
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 .whatsapp-button:hover {
@@ -364,8 +694,8 @@ p {
   right: 20px;
   background-color: #25D366;
   color: white;
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -377,17 +707,17 @@ p {
 }
 
 #whatsapp-icon i {
-  font-size: 30px;
+  font-size: 24px;
 }
 
 /* Animação de Explosão */
-@keyframes pulse {
+@keyframes explode {
   0% {
     transform: scale(1);
   }
 
   50% {
-    transform: scale(1.2);
+    transform: scale(1.5);
   }
 
   100% {
@@ -402,18 +732,18 @@ p {
 
 .horarios {
   color: white;
-  font-size: 1.8rem;
-  margin-top: 1.5rem;
+  font-size: 15px;
+  margin-top: 1rem;
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 
 /* Footer */
 .footer {
   background-color: var(--white-color);
-  padding: 2rem;
+  padding: 1rem;
   border-top: 1px solid #ccc;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #000;
   text-align: center;
 }
@@ -421,7 +751,7 @@ p {
 .footer-container {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
   max-width: 1200px;
   margin: 0 auto;
   flex-wrap: wrap;
@@ -445,7 +775,7 @@ p {
   height: auto;
   margin-bottom: 0.5rem;
   border-radius: 50%;
-  max-width: 120px;
+  max-width: 100px;
 }
 
 .footer p {
@@ -465,7 +795,7 @@ p {
 }
 
 .fa-instagram {
-  font-size: 2.5rem;
+  font-size: 3rem;
   color: #E1306C;
   transition: transform 0.3s ease;
 }
@@ -477,15 +807,15 @@ p {
 /* Responsividade */
 @media (max-width: 768px) {
   h1 {
-    font-size: 3.5rem;
-  }
-
-  h2 {
     font-size: 3rem;
   }
 
-  h3 {
+  h2 {
     font-size: 2.5rem;
+  }
+
+  h3 {
+    font-size: 2rem;
   }
 
   /* Ajustes para o menu em mobile */
@@ -499,7 +829,6 @@ p {
     width: 30px;
     height: 3px;
     background-color: var(--toggle-color);
-    /* Cinza escuro */
     position: relative;
     transition: all 0.3s ease;
   }
@@ -510,7 +839,6 @@ p {
     width: 30px;
     height: 3px;
     background-color: var(--toggle-color);
-    /* Cinza escuro */
     position: absolute;
     transition: all 0.3s ease;
   }
@@ -525,7 +853,6 @@ p {
 
   .close-menu:checked~.menu .menu-icon {
     background-color: transparent;
-    /* Remove a linha do meio */
   }
 
   .close-menu:checked~.menu .menu-icon::before {
@@ -541,12 +868,11 @@ p {
     flex-direction: column;
     gap: 1rem;
     background-color: #f5f5f5;
-    /* Cinza bem claro */
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    padding: 2rem;
+    padding: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
@@ -554,9 +880,25 @@ p {
     display: flex;
   }
 
+  /* Ajustes para o grid de imagens em mobile */
   .image-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Layout responsivo em mobile */
-    max-width: 100%; /* Remove a limitação de largura em mobile */
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .image-item {
+    height: auto;
+  }
+
+  .image-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+  }
+
+  .image-item {
+    width: 165px; /* Largura fixa */
+    height: 215px; /* Altura fixa */
+    margin: 0 auto; /* Centraliza as imagens */
   }
 
   /* Ajustes para o header em mobile */
@@ -586,15 +928,6 @@ p {
     font-size: 1.5rem;
   }
 
-  /* Ajustes para o grid de imagens em mobile */
-  .grid-two-columns {
-    grid-template-columns: 1fr;
-  }
-
-  .image-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-
   /* Ajustes para o texto em mobile */
   .text {
     font-size: 22px;
@@ -603,7 +936,7 @@ p {
   /* Ajustes para o footer em mobile */
   .footer-container {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .footer-column {
@@ -627,5 +960,33 @@ p {
   /* Classe para aplicar a animação de clique */
   .explode-effect {
     animation: explode 0.5s ease-out;
+  }
+
+  /* Ajustes para a seção de lentes em mobile */
+  .lentes-grid {
+    flex-direction: column;
+  }
+
+  .lentes-images {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Ajustes para a seção de tratamentos em mobile */
+  .tratamentos-content {
+    flex-direction: column;
+  }
+
+  .tratamentos-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tratamentos-right {
+    max-width: 100%;
+  }
+  .lentes-image-item img {
+    width: 100%; /* Largura responsiva (ocupa 100% do container) */
+    height: auto; /* Altura automática para manter a proporção */
+    max-width: 100%; /* Garante que a imagem não ultrapasse o container */
   }
 }
