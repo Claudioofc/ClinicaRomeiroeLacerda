@@ -17,27 +17,6 @@ window.addEventListener('scroll', function () {
     }
 });
 
-// Efeito de clique no ícone do WhatsApp
-const whatsappIcon = document.getElementById('whatsapp-icon');
-if (whatsappIcon) {
-    whatsappIcon.addEventListener('click', function (event) {
-        event.preventDefault(); // Evita o comportamento padrão do link
-
-        // Adiciona a classe de efeito
-        this.classList.add('explode-effect');
-
-        // Remove a classe após a animação terminar
-        this.addEventListener('animationend', () => {
-            this.classList.remove('explode-effect');
-        });
-
-        // Redireciona para o WhatsApp após a animação
-        setTimeout(() => {
-            window.location.href = 'https://wa.me/5531991242925?text=Vim%20pelo%20site%20romeiroelacerda%20(Ícone%20Flutuante)';
-        }, 500); // Tempo correspondente à duração da animação
-    });
-}
-
 // Bloquear rolagem ao abrir o menu
 document.addEventListener('DOMContentLoaded', function () {
     const closeMenuCheckbox = document.getElementById('close-menu');
@@ -131,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // Garante que a página role para o topo ao ser carregada
-window.onload = function() {
+window.onload = function () {
     window.scrollTo(0, 0);
 };
 
@@ -143,9 +122,9 @@ function trackWhatsAppClicks() {
         link.addEventListener('click', function (event) {
             const href = this.href;
             const origin = href.includes('Resultados') ? 'Resultados' :
-                           href.includes('Lentes%20de%20Resina') ? 'Lentes de Resina' :
-                           href.includes('Contato') ? 'Contato' :
-                           href.includes('Ícone%20Flutuante') ? 'Ícone Flutuante' : 'Desconhecido';
+                href.includes('Lentes%20de%20Resina') ? 'Lentes de Resina' :
+                    href.includes('Contato') ? 'Contato' :
+                        href.includes('Ícone%20Flutuante') ? 'Ícone Flutuante' : 'Desconhecido';
 
             console.log(`Clique no WhatsApp detectado. Origem: ${origin}`);
 
@@ -160,5 +139,105 @@ function trackWhatsAppClicks() {
     });
 }
 
+// Função para rastrear cliques em qualquer elemento da página
+function trackClicks() {
+    document.addEventListener('click', function (event) {
+        const target = event.target;
+
+        // Verifica se o elemento clicado tem um ID ou classe
+        const elementId = target.id || 'Sem ID';
+        const elementClass = target.className || 'Sem Classe';
+
+        // Registra a origem do clique no console
+        console.log(`Clique detectado. Origem: ID - ${elementId}, Classe - ${elementClass}`);
+
+        // Se você estiver usando Google Analytics, pode enviar um evento personalizado
+        if (window.gtag) {
+            gtag('event', 'click', {
+                'event_category': 'User Interaction',
+                'event_label': `ID: ${elementId}, Classe: ${elementClass}`,
+                'value': 1
+            });
+        }
+    });
+}
+
+// Função para rastrear a origem do tráfego (referrer)
+function trackReferrer() {
+    const referrer = document.referrer || 'Direto';
+    console.log(`Usuário acessou a partir de: ${referrer}`);
+    if (window.gtag) {
+        gtag('event', 'referrer', {
+            'event_category': 'Traffic Source',
+            'event_label': referrer,
+            'value': 1
+        });
+    }
+}
+
+// Função para rastrear a localização do usuário
+function trackLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                console.log(`Localização do usuário: Latitude ${latitude}, Longitude ${longitude}`);
+                if (window.gtag) {
+                    gtag('event', 'location', {
+                        'event_category': 'User Location',
+                        'event_label': `Lat: ${latitude}, Long: ${longitude}`,
+                        'value': 1
+                    });
+                }
+                fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=pt`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const city = data.city || 'Desconhecido';
+                        const country = data.countryName || 'Desconhecido';
+                        console.log(`Usuário acessou de: ${city}, ${country}`);
+                        if (window.gtag) {
+                            gtag('event', 'location', {
+                                'event_category': 'User Location',
+                                'event_label': `${city}, ${country}`,
+                                'value': 1
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erro ao obter localização:', error);
+                    });
+            },
+            function (error) {
+                console.error('Erro ao obter localização:', error.message);
+            }
+        );
+    } else {
+        console.log('Geolocalização não suportada pelo navegador.');
+    }
+}
+
+// Função para capturar parâmetros UTM da URL
+function trackUTM() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const utmSource = urlParams.get('utm_source') || 'Direto';
+    const utmMedium = urlParams.get('utm_medium') || 'Nenhum';
+    const utmCampaign = urlParams.get('utm_campaign') || 'Nenhum';
+    console.log(`UTM Source: ${utmSource}, UTM Medium: ${utmMedium}, UTM Campaign: ${utmCampaign}`);
+    if (window.gtag) {
+        gtag('event', 'utm', {
+            'event_category': 'Traffic Source',
+            'event_label': `Source: ${utmSource}, Medium: ${utmMedium}, Campaign: ${utmCampaign}`,
+            'value': 1
+        });
+    }
+}
+
 // Inicializa o rastreamento ao carregar a página
-document.addEventListener('DOMContentLoaded', trackWhatsAppClicks);
+document.addEventListener('DOMContentLoaded', function () {
+    trackReferrer();
+    trackLocation();
+    trackUTM();
+    trackWhatsAppClicks(); // Sua função existente
+    trackClicks(); // Sua função existente
+});
