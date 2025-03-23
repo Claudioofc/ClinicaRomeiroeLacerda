@@ -82,13 +82,23 @@ p {
 .main-content {
   max-width: 120rem;
   margin: 0 auto;
-  padding: 5rem var(--gap);
+  padding: 3rem var(--gap); /* Reduzindo o padding de 5rem para 3rem */
 }
 
 .section {
-  min-height: 50vh;
+  min-height: 60vh; /* Aumentei de 40vh para 60vh */
   padding: 3rem 0;
   text-align: center;
+}
+
+/* Ajuste específico para a seção de Lentes de Resina */
+.lentes-section {
+  min-height: 300px; /* Altura fixa de 300 pixels */
+}
+
+/* Ajuste específico para a seção de Contato */
+#contato {
+  min-height: 40vh; /* Reduzi a altura da seção de contato */
 }
 
 /* Menu */
