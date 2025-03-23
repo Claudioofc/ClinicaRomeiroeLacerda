@@ -53,7 +53,6 @@ h2 {
   font-size: 55px;
   margin-bottom: 2rem;
   font-weight: 700;
-
   text-transform: uppercase;
 }
 
@@ -62,7 +61,12 @@ h3 {
 }
 
 p {
-  margin-bottom: 2rem;
+  font-size: 1.8rem; /* Tamanho da fonte */
+  line-height: 1.6; /* Espaçamento entre linhas */
+  color: var(--primary-color); /* Cor do texto */
+  margin-bottom: 2rem; /* Margem inferior */
+  text-align: left; /* Alinhamento do texto */
+  font-weight: 400; /* Peso da fonte (normal) */
 }
 
 .main-bg {
@@ -188,8 +192,6 @@ p {
   color: rgb(239, 191, 86); /* Cor do hover */
 }
 
-
-
 /* Seção de Introdução */
 #home {
   position: relative;
@@ -231,10 +233,11 @@ p {
   font-weight: 700;
 }
 
-
 .intro-text-overlay p {
   font-size: 2rem;
   color: var(--secondary-color);
+  text-align: center; /* Centralizado na seção de introdução */
+  font-weight: 500; /* Peso da fonte (medium) */
 }
 
 .text h2 {
@@ -339,7 +342,7 @@ p {
 }
 
 .lentes-title {
-  font-size: 42px;
+  font-size: 35px;
   font-weight: bold;
   color: #000;
 }
@@ -347,6 +350,7 @@ p {
 .lentes-title a {
   text-decoration: none;
   color: inherit;
+  text-transform: uppercase;
 }
 
 /* Estilo para o título "O que é?" */
@@ -361,12 +365,12 @@ p {
 
 /* Estilo para o texto descritivo */
 .lentes-text {
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.5;
   color: #333;
   text-align: left;
   margin-bottom: 1rem;
-  font-weight: 500;
+  font-weight: 500; /* Peso da fonte (medium) */
 }
 
 /* Container para imagens e tipos de lentes */
@@ -419,7 +423,6 @@ p {
 /* Estilo para as caixas de tipos de lentes */
 .lentes-tipo-box {
   background-color: #ffffff;
-
   border-radius: 10px;
   margin-bottom: 0.5rem;
   cursor: pointer;
@@ -429,7 +432,6 @@ p {
   align-items: flex-start;
   justify-content: center;
 }
-
 
 /* Estilo para os títulos das caixas de tipos de lentes */
 .lentes-tipo-subtitle {
@@ -441,10 +443,8 @@ p {
   text-align: left;
   background-color: #000000; /* Fundo preto */
   padding: 10px 15px; /* Adiciona um pouco de espaço interno */
-  
   text-transform: uppercase;
 }
-
 
 /* Sinal de + padrão */
 .lentes-tipo-subtitle::after {
@@ -507,18 +507,18 @@ p {
 }
 
 .tratamentos-title span {
-    /* Remova text-transform: uppercase; se existir */
-    font-size: 48px; /* Mantenha o tamanho da fonte */
-    font-weight: 700; /* Mantenha o peso da fonte */
-    color: var(--primary-color); /* Mantenha a cor */
+  font-size: 48px; /* Mantenha o tamanho da fonte */
+  font-weight: 700; /* Mantenha o peso da fonte */
+  color: var(--primary-color); /* Mantenha a cor */
 }
 
 .tratamentos-text {
-  font-size: 18px;
+  font-size: 1.8rem;
   color: var(--primary-color);
   text-align: left; /* Alinhar o texto à esquerda */
   margin-bottom: 3rem;
   line-height: 1.6; /* Ajusta o espaçamento entre as linhas */
+  font-weight: 400; /* Peso da fonte (normal) */
 }
 
 .tratamentos-text br {
@@ -573,7 +573,6 @@ p {
 
 .tab-button:hover {
   background-color: var(--primary-color);
-  
 }
 
 .tabs-content {
@@ -589,11 +588,12 @@ p {
 }
 
 /* Estilo para os parágrafos dentro das abas ativas */
-.tab-content.active p {
-  background-color: white; /* Fundo branco */
-  padding: 1rem; /* Adiciona um pouco de espaço interno */
-  border-radius: 5px; /* Bordas arredondadas */
-  margin-bottom: -1rem; /* Espaço entre os parágrafos */
+.tab-content p {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 400; /* Peso da fonte (normal) */
 }
 
 /* Div para a imagem (lado direito) */
@@ -663,7 +663,10 @@ p {
   color: #efbf56;
   font-size: 27px;
   font-weight: bold;
+}
 
+.text-avaliacao {
+  text-align: center;
 }
 
 .whatsapp-button {
@@ -708,7 +711,7 @@ p {
 }
 
 #whatsapp-icon i {
-  font-size: 24px;
+  font-size: 45px;
 }
 
 /* Animação de Explosão */
@@ -780,9 +783,12 @@ p {
 }
 
 .footer p {
-  margin: 0.1rem 0;
+  font-size: 1.6rem;
   line-height: 1.1;
   color: #000;
+  margin: 0.1rem 0;
+  font-weight: 400; /* Peso da fonte (normal) */
+  text-align: center;
 }
 
 .footer a {
@@ -985,6 +991,7 @@ p {
   .tratamentos-right {
     max-width: 100%;
   }
+
   .lentes-image-item img {
     width: 100%; /* Largura responsiva (ocupa 100% do container) */
     height: auto; /* Altura automática para manter a proporção */

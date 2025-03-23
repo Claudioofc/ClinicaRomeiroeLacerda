@@ -33,7 +33,7 @@ if (whatsappIcon) {
 
         // Redireciona para o WhatsApp após a animação
         setTimeout(() => {
-            window.location.href = 'http://wa.me/5531991242925';
+            window.location.href = 'https://wa.me/5531991242925?text=Vim%20pelo%20site%20romeiroelacerda%20(Ícone%20Flutuante)';
         }, 500); // Tempo correspondente à duração da animação
     });
 }
@@ -129,3 +129,36 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Garante que a página role para o topo ao ser carregada
+window.onload = function() {
+    window.scrollTo(0, 0);
+};
+
+// Função para rastrear cliques nos links do WhatsApp
+function trackWhatsAppClicks() {
+    const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+
+    whatsappLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            const href = this.href;
+            const origin = href.includes('Resultados') ? 'Resultados' :
+                           href.includes('Lentes%20de%20Resina') ? 'Lentes de Resina' :
+                           href.includes('Contato') ? 'Contato' :
+                           href.includes('Ícone%20Flutuante') ? 'Ícone Flutuante' : 'Desconhecido';
+
+            console.log(`Clique no WhatsApp detectado. Origem: ${origin}`);
+
+            if (window.gtag) {
+                gtag('event', 'click', {
+                    'event_category': 'WhatsApp',
+                    'event_label': origin,
+                    'value': 1
+                });
+            }
+        });
+    });
+}
+
+// Inicializa o rastreamento ao carregar a página
+document.addEventListener('DOMContentLoaded', trackWhatsAppClicks);
