@@ -1,0 +1,15 @@
+{
+    "name": "Romeiro e Lacerda Odontologia",
+    "short_name": "Romeiro e Lacerda",
+    "description": "Estética e Reabilitação Oral",
+    "icons": [
+      {
+        "src": "assets/img/icons/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      }
+    ],
+    "theme_color": "#efbf56",
+    "background_color": "#ffffff",
+    "display": "standalone"
+  }
