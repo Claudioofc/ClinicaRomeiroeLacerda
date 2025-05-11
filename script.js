@@ -241,3 +241,24 @@ document.addEventListener('DOMContentLoaded', function () {
     trackWhatsAppClicks(); // Sua função existente
     trackClicks(); // Sua função existente
 });
+
+// ====================== GOOGLE ANALYTICS ======================
+// Carrega o script do Google Analytics dinamicamente
+(function() {
+    // Verifica se já não foi carregado
+    if (window.dataLayer && window.gtag) return;
+    
+    // Cria e configura o script de carregamento
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X';
+    
+    // Adiciona ao documento
+    document.head.appendChild(script);
+    
+    // Configura o dataLayer e função gtag
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function() { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', 'UA-XXXXXXXXX-X');
+  })();
