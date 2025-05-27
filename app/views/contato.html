@@ -1,0 +1,26 @@
+<section class="white-bg section">
+    <div class="main-content">
+        <h2 class="section-title">Entre em Contato</h2>
+        <div class="contato-grid">
+            <div class="contato-info">
+                <h3>Endereço</h3>
+                <p>{{contato.endereco.rua}}</p>
+                <p>{{contato.endereco.bairro}}</p>
+                <p>{{contato.endereco.cidade}} - {{contato.endereco.estado}}</p>
+                <p>CEP: {{contato.endereco.cep}}</p>
+
+                <h3>Horário de Funcionamento</h3>
+                <p>Segunda a Sexta: {{contato.horario.segunda_sexta}}</p>
+                <p>Sábado: {{contato.horario.sabado}}</p>
+            </div>
+            <div class="contato-whatsapp">
+                <h3>Agende sua Consulta</h3>
+                <p>Entre em contato pelo WhatsApp para agendar sua consulta ou tirar dúvidas.</p>
+                <a ng-href="{{getWhatsAppLink()}}" class="agenda-button" target="_blank" 
+                   ng-click="trackWhatsAppClick('Contato')">
+                    <i class="fab fa-whatsapp"></i> Fale Conosco
+                </a>
+            </div>
+        </div>
+    </div>
+</section> 

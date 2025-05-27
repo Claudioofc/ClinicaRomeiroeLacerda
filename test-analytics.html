@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste Analytics</title>
+</head>
+<body>
+    <h1>Teste de Analytics</h1>
+    <button onclick="testAnalytics()">Testar Analytics</button>
+    <div id="events"></div>
+
+    <script>
+        function testAnalytics() {
+            // Simula o localStorage do site
+            const events = JSON.parse(localStorage.getItem('clinica_events') || '[]');
+            
+            document.getElementById('events').innerHTML = `
+                <h2>Eventos Rastreados (${events.length}):</h2>
+                <pre>${JSON.stringify(events, null, 2)}</pre>
+            `;
+        }
+        
+        // Carrega automaticamente
+        testAnalytics();
+    </script>
+</body>
+</html> 

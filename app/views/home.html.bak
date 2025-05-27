@@ -1,0 +1,242 @@
+<!-- Seção Intro -->
+<section id="home" class="intro main-bg section">
+    <div class="intro-content">
+        <div class="intro-img">
+            <img src="assets/img/Clinica.jpg" alt="Imagem da Clínica">
+        </div>
+        <div class="intro-text-overlay">
+            <h1>Romeiro e Lacerda</h1>
+            <p>
+                <span class="text-bege">Estética e Reabilitação Oral</span>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="resultados" class="white-bg section">
+    <div class="main-content grid-one-content">
+        <div class="grid-two-columns">
+            <div class="left-column">
+                <h2 class="grid-main-heading">Resultados</h2>
+            </div>
+            <div class="right-column">
+                <p class="grid-description">
+                    Explore nossa galeria para ver os resultados impressionantes das lentes em resina aplicadas
+                    pelos nossos especialistas. Cada sorriso é uma prova do nosso compromisso com a estética e a
+                    qualidade, mostrando como nossas facetas em resina podem transformar seu visual com naturalidade
+                    e brilho.
+                </p>
+            </div>
+        </div>
+        <div class="image-grid">
+            <div class="image-item">
+                <img src="assets/img/img-resultados-7.webp" alt="Resultado 1">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina8.jpg" alt="Resultado 2">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina3.jpg" alt="Resultado 3">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina2.jpg" alt="Resultado 4">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina4.jpg" alt="Resultado 5">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina7.jpg" alt="Resultado 6">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina5.jpg" alt="Resultado 7">
+            </div>
+            <div class="image-item">
+                <img src="assets/img/Foto-resina9.jpg" alt="Resultado 8">
+            </div>
+        </div>
+        <div class="agenda-button-container">
+            <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
+                class="agenda-button" target="_blank" ng-click="trackWhatsAppClick('Resultados')">
+                <i class="fab fa-whatsapp"></i> Agenda Aberta
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Lentes de Resina -->
+<section id="lentes" class="white-bg section">
+    <div class="main-content">
+        <div class="lentes-title-container">
+            <h1 class="lentes-title">
+                <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
+                    target="_blank" ng-click="trackWhatsAppClick('Lentes de Resina')">Lentes de Resinas</a>
+            </h1>
+        </div>
+        <div class="lentes-grid">
+            <div class="lentes-left">
+                <h2 class="lentes-subtitle">O que é?</h2>
+                <p class="lentes-text">
+                    As lentes em resina são finas camadas de resina compostas aplicadas sobre a superfície dos
+                    dentes para melhorar a estética e corrigir imperfeições. Elas são projetadas para criar um
+                    sorriso mais harmonioso e natural, cobrindo manchas, desgastes ou pequenas falhas dentárias. O
+                    procedimento é minimamente invasivo, proporcionando resultados rápidos e personalizados com um
+                    acabamento de alta qualidade. Além de aprimorar a aparência do sorriso, as lentes em resina são
+                    duráveis e oferecem uma solução eficiente para melhorar a estética dental.
+                </p>
+                <div class="lentes-images">
+                    <div class="lentes-image-item">
+                        <img src="assets/img/Foto-3 sorriso.jpg" alt="Lente 1">
+                    </div>
+                </div>
+            </div>
+
+            <div class="lentes-right">
+                <h2 class="lentes-tipos-title">Tipos de Lentes de Resina</h2>
+                <div class="lentes-tipo-box" ng-click="toggleTexto($event.currentTarget)">
+                    <h3 class="lentes-tipo-subtitle" id="porcelanas">Porcelanas</h3>
+                    <p class="hidden-texto">
+                        Facetas em porcelana são lâminas finas, personalizadas, que cobrem a superfície dos dentes
+                        para corrigir imperfeições e melhorar o sorriso. Duráveis e estéticas, elas oferecem uma
+                        solução de alta qualidade para dentes manchados, desgastados ou desiguais, proporcionando um
+                        sorriso natural e brilhante.
+                    </p>
+                </div>
+                <div class="lentes-tipo-box" ng-click="toggleTexto($event.currentTarget)">
+                    <h3 class="lentes-tipo-subtitle" id="lentes-resina">Lentes em Resina</h3>
+                    <p class="hidden-texto">
+                        Nossa técnica é projetada para proporcionar uma aparência esteticamente uniforme, sem
+                        detalhes anatômicos proeminentes.
+                        Suavidade e Alignamento: Criamos sorrisos elegantes e harmoniosos, com uma superfície suave
+                        e dentes perfeitamente alinhados.
+                        <br><br>Resina importada e Longevidade +10 anos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Tratamentos -->
+<section id="tratamentos" class="white-bg section">
+    <div class="main-content">
+        <h2 class="tratamentos-title"><span>outros</span><br> tratamentos</h2>
+        <p class="tratamentos-text">
+            Além das facetas em resina e porcelana, oferecemos uma<br>
+            gama completa de serviços odontológicos.
+        </p>
+        <div class="tratamentos-content">
+            <div class="tratamentos-left">
+                <div class="tabs">
+                    <div class="tabs-buttons">
+                        <button class="tab-button" ng-class="{'active': activeTab === 1}" ng-click="setActiveTab(1)">
+                            Implantes de Protocolo
+                        </button>
+                        <button class="tab-button" ng-class="{'active': activeTab === 2}" ng-click="setActiveTab(2)">
+                            Procedimentos
+                        </button>
+                    </div>
+
+                    <div class="tabs-content">
+                        <div id="tab-1" class="tab-content" ng-class="{'active': activeTab === 1}">
+                            <p>
+                                Os implantes de protocolo são uma solução avançada para a substituição de dentes
+                                perdidos.
+                                Consistem em um conjunto de implantes dentários suportando uma prótese fixa,
+                                proporcionando
+                                estabilidade, funcionalidade e um sorriso estético. Ideal para pacientes que buscam
+                                uma
+                                recuperação rápida e eficaz.
+                            </p>
+                        </div>
+
+                        <div id="tab-2" class="tab-content" ng-class="{'active': activeTab === 2}">
+                            <p>
+                                • <strong>Limpeza e Prevenção:</strong> Realizamos limpezas profissionais para
+                                remover
+                                placa bacteriana, tártaro e manchas, prevenindo o acúmulo de cáries e doenças
+                                periodontais.
+                            </p>
+                            <p>
+                                • <strong>Restaurações Dentárias:</strong> Oferecemos restaurações de alta
+                                qualidade, como
+                                obturações de resina composta, para tratar cáries e restaurar a integridade dos
+                                dentes afetados.
+                            </p>
+                            <p>
+                                • <strong>Tratamento de Canal:</strong> Em casos de infecção ou danos severos na
+                                polpa do
+                                dente, nossos especialistas em endodontia realizam o tratamento de canal.
+                            </p>
+                            <p>
+                                • <strong>Extrações Dentárias:</strong> Quando necessário, realizamos extrações
+                                dentárias
+                                com o máximo de cuidado e conforto para o paciente.
+                            </p>
+                            <p>
+                                • <strong>Gengivoplastia:</strong> Cirurgia plástica que tem como objetivo corrigir
+                                a
+                                gengiva e o sorriso do paciente.
+                            </p>
+                            <p>
+                                • <strong>Placa de Bruxismo:</strong> A placa miorrelaxante é indicada em casos que
+                                o
+                                ranger de dentes, ligado diretamente ou não ao bruxismo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tratamentos-img">
+                <img src="assets/img/Imagem-clinico.png" alt="Outros Tratamentos">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contato" class="intro main-bg section">
+    <div class="avaliacao-container">
+        <p class="text-avaliacao">Faça uma avaliação aqui</p>
+    </div>
+    <div class="main-content intro-content">
+        <div class="intro-text-content">
+            <h2 class="text">Seu sorriso é nossa prioridade. Transforme-o com a nossa expertise e confiança</h2>
+            <div class="contact-info">
+                <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
+                    class="whatsapp-button" target="_blank" ng-click="trackWhatsAppClick('Contato')">
+                    <i class="fab fa-whatsapp"></i> (31) 99124-2925
+                </a>
+                <p class="horarios">
+                    Segunda a sexta das 8:00 às 18:00<br>
+                    Sábado das 8:00 às 15:00
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="footer" class="footer white-bg">
+    <div class="footer-container">
+        <div class="footer-column">
+            <img src="assets/img/Logo.jpg" alt="Logo romeiro e lacerda" class="footer-logo">
+            <p>ROMEIRO E LACERDA ODONTOLOGIA LTDA<br>
+                50.890.310/0001-05<br>
+                <br>CRO-MG 58624
+            </p>
+        </div>
+        <div class="footer-column">
+            <p><strong>UNIDADE MINAS GERAIS
+                    <br> CNPJ:</strong><br> 60.622.338/0001-07</p>
+            Rua Santa Catarina, 1627, sala 603<br>
+            Belo Horizonte - MG<br>
+            CEP: 30170-081<br><br>
+            <strong>(31) 991242925</strong></p>
+        </div>
+        <div class="footer-column">
+            <a href="https://www.instagram.com/romeiroelacerda.odontologia/" target="_blank"
+                rel="noopener noreferrer">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </div>
+</footer> 

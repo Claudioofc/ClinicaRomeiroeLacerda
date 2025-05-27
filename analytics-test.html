@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Analytics - Clínica Odontológica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .warning {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .events-list {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .event-item {
+            background: white;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 3px;
+            border-left: 4px solid #007bff;
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #666;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Teste de Analytics - Clínica Odontológica</h1>
+        
+        <!-- Status do Google Analytics -->
+        <div class="test-section">
+            <h2>📊 Status do Google Analytics</h2>
+            <div id="ga-status" class="status warning">Verificando...</div>
+            <div id="ga-details"></div>
+        </div>
+
+        <!-- Teste de Eventos -->
+        <div class="test-section">
+            <h2>🧪 Teste de Eventos</h2>
+            <button onclick="testWhatsAppClick()">Testar WhatsApp Click</button>
+            <button onclick="testPageView()">Testar Page View</button>
+            <button onclick="testCustomEvent()">Testar Evento Customizado</button>
+            <button onclick="clearEvents()">Limpar Eventos</button>
+        </div>
+
+        <!-- Eventos Locais -->
+        <div class="test-section">
+            <h2>📝 Eventos Rastreados Localmente</h2>
+            <div id="local-events-count" class="status">Carregando...</div>
+            <button onclick="filterLocationEvents()">Filtrar Eventos de Localização</button>
+            <button onclick="filterTrafficEvents()">Filtrar Origem do Tráfego</button>
+            <button onclick="showAllEvents()">Mostrar Todos</button>
+            <div id="local-events" class="events-list"></div>
+        </div>
+        
+        <!-- Dados Geográficos -->
+        <div class="test-section">
+            <h2>🌍 Dados Geográficos Detectados</h2>
+            <div id="location-data"></div>
+        </div>
+
+        <!-- Informações do Sistema -->
+        <div class="test-section">
+            <h2>ℹ️ Informações do Sistema</h2>
+            <div id="system-info"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simular o serviço de analytics
+        const analyticsService = {
+            trackEvent: function(category, action, label, value) {
+                const event = {
+                    timestamp: new Date().toISOString(),
+                    category: category,
+                    action: action,
+                    label: label,
+                    value: value || 1,
+                    url: window.location.href,
+                    userAgent: navigator.userAgent
+                };
+                
+                // Store locally
+                const events = JSON.parse(localStorage.getItem('clinica_events') || '[]');
+                events.push(event);
+                localStorage.setItem('clinica_events', JSON.stringify(events.slice(-50)));
+                
+                // Try Google Analytics
+                if (window.gtag) {
+                    try {
+                        window.gtag('event', action, {
+                            'event_category': category,
+                            'event_label': label,
+                            'value': value || 1
+                        });
+                        console.log('✅ Google Analytics event sent:', event);
+                    } catch (e) {
+                        console.warn('❌ Google Analytics error:', e);
+                    }
+                } else {
+                    console.warn('⚠️ Google Analytics not available');
+                }
+                
+                console.log('📝 Event tracked locally:', event);
+                updateLocalEvents();
+            }
+        };
+
+        // Verificar status do Google Analytics
+        function checkGoogleAnalytics() {
+            const statusDiv = document.getElementById('ga-status');
+            const detailsDiv = document.getElementById('ga-details');
+            
+            if (window.gtag && window.dataLayer) {
+                statusDiv.className = 'status success';
+                statusDiv.textContent = '✅ Google Analytics carregado e funcionando';
+                detailsDiv.innerHTML = `
+                    <p><strong>DataLayer:</strong> ${window.dataLayer.length} eventos</p>
+                    <p><strong>GTAG:</strong> Função disponível</p>
+                `;
+            } else if (window.dataLayer) {
+                statusDiv.className = 'status warning';
+                statusDiv.textContent = '⚠️ DataLayer encontrado, mas GTAG não disponível';
+                detailsDiv.innerHTML = `<p><strong>DataLayer:</strong> ${window.dataLayer.length} eventos</p>`;
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '❌ Google Analytics não carregado';
+                detailsDiv.innerHTML = `
+                    <p><strong>Possíveis causas:</strong></p>
+                    <ul>
+                        <li>ID do Google Analytics inválido (G-XXXXXXXXXX)</li>
+                        <li>Script não carregado</li>
+                        <li>Bloqueador de anúncios ativo</li>
+                        <li>Erro de rede</li>
+                    </ul>
+                `;
+            }
+        }
+
+        // Atualizar lista de eventos locais
+        function updateLocalEvents(filter = null) {
+            const events = JSON.parse(localStorage.getItem('clinica_events') || '[]');
+            const countDiv = document.getElementById('local-events-count');
+            const eventsDiv = document.getElementById('local-events');
+            
+            let filteredEvents = events;
+            
+            if (filter === 'location') {
+                filteredEvents = events.filter(e => 
+                    e.category.includes('Location') || 
+                    e.category.includes('Geographic') || 
+                    e.category.includes('User Info')
+                );
+            } else if (filter === 'traffic') {
+                filteredEvents = events.filter(e => 
+                    e.category.includes('Traffic') || 
+                    e.category.includes('Network')
+                );
+            }
+            
+            countDiv.className = events.length > 0 ? 'status success' : 'status warning';
+            countDiv.textContent = `📊 ${filteredEvents.length} eventos ${filter ? `(${filter})` : ''} de ${events.length} total`;
+            
+            if (filteredEvents.length === 0) {
+                eventsDiv.innerHTML = '<p>Nenhum evento encontrado para este filtro.</p>';
+                return;
+            }
+            
+            eventsDiv.innerHTML = filteredEvents.slice(-15).reverse().map(event => `
+                <div class="event-item">
+                    <strong>${event.category}</strong> → ${event.action}
+                    <br><small>${event.label}</small>
+                    <div class="timestamp">${new Date(event.timestamp).toLocaleString('pt-BR')}</div>
+                </div>
+            `).join('');
+            
+            // Atualizar dados geográficos
+            updateLocationData(events);
+        }
+        
+        // Mostrar dados geográficos detectados
+        function updateLocationData(events) {
+            const locationDiv = document.getElementById('location-data');
+            
+            // Extrair dados de localização dos eventos
+            const locationEvents = events.filter(e => 
+                e.category.includes('Location') || 
+                e.category.includes('Geographic') ||
+                e.category.includes('User Info')
+            );
+            
+            if (locationEvents.length === 0) {
+                locationDiv.innerHTML = '<p>Nenhum dado geográfico detectado ainda.</p>';
+                return;
+            }
+            
+            const locationData = {};
+            locationEvents.forEach(event => {
+                if (event.action === 'country' || event.action === 'country_ip') {
+                    locationData.country = event.label;
+                }
+                if (event.action === 'state' || event.action === 'state_ip') {
+                    locationData.state = event.label;
+                }
+                if (event.action === 'city' || event.action === 'city_ip') {
+                    locationData.city = event.label;
+                }
+                if (event.action === 'language') {
+                    locationData.language = event.label;
+                }
+                if (event.action === 'timezone') {
+                    locationData.timezone = event.label;
+                }
+                if (event.action === 'precise_location' || event.action === 'ip_location') {
+                    locationData.fullLocation = event.label;
+                }
+            });
+            
+            locationDiv.innerHTML = `
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 5px;">
+                    ${locationData.fullLocation ? `<p><strong>📍 Localização:</strong> ${locationData.fullLocation}</p>` : ''}
+                    ${locationData.country ? `<p><strong>🌍 País:</strong> ${locationData.country}</p>` : ''}
+                    ${locationData.state ? `<p><strong>🏛️ Estado:</strong> ${locationData.state}</p>` : ''}
+                    ${locationData.city ? `<p><strong>🏙️ Cidade:</strong> ${locationData.city}</p>` : ''}
+                    ${locationData.language ? `<p><strong>🗣️ Idioma:</strong> ${locationData.language}</p>` : ''}
+                    ${locationData.timezone ? `<p><strong>🕐 Fuso Horário:</strong> ${locationData.timezone}</p>` : ''}
+                </div>
+            `;
+        }
+        
+        // Funções de filtro
+        function filterLocationEvents() {
+            updateLocalEvents('location');
+        }
+        
+        function filterTrafficEvents() {
+            updateLocalEvents('traffic');
+        }
+        
+        function showAllEvents() {
+            updateLocalEvents();
+        }
+
+        // Mostrar informações do sistema
+        function showSystemInfo() {
+            const infoDiv = document.getElementById('system-info');
+            infoDiv.innerHTML = `
+                <pre>
+URL: ${window.location.href}
+User Agent: ${navigator.userAgent}
+Referrer: ${document.referrer || 'Direct'}
+Language: ${navigator.language}
+Platform: ${navigator.platform}
+Cookies Enabled: ${navigator.cookieEnabled}
+Local Storage: ${typeof(Storage) !== "undefined" ? 'Disponível' : 'Não disponível'}
+                </pre>
+            `;
+        }
+
+        // Funções de teste
+        function testWhatsAppClick() {
+            analyticsService.trackEvent('WhatsApp', 'click', 'Test Button');
+        }
+
+        function testPageView() {
+            analyticsService.trackEvent('Page', 'view', window.location.pathname);
+        }
+
+        function testCustomEvent() {
+            analyticsService.trackEvent('Test', 'custom_event', 'Analytics Test Page');
+        }
+
+        function clearEvents() {
+            localStorage.removeItem('clinica_events');
+            updateLocalEvents();
+            console.log('🗑️ Eventos locais limpos');
+        }
+
+        // Inicializar página
+        document.addEventListener('DOMContentLoaded', function() {
+            checkGoogleAnalytics();
+            updateLocalEvents();
+            showSystemInfo();
+            
+            // Verificar novamente após 2 segundos (tempo para GA carregar)
+            setTimeout(checkGoogleAnalytics, 2000);
+        });
+    </script>
+</body>
+</html> 

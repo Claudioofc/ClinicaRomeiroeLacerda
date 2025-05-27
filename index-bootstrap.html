@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="clinicaApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romeiro e Lacerda - Estética e Reabilitação Oral</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <!-- CSS Customizado com Bootstrap -->
+    <link rel="stylesheet" href="assets/css/styles-bootstrap.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/icons/site.webmanifest">
+</head>
+
+<body ng-controller="MainController">
+    <!-- Navbar Bootstrap -->
+    <nav class="navbar navbar-expand-lg fixed-top" ng-class="{'shrink': shrinkHeader}">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <img src="assets/img/Logo.jpg" alt="Logo" class="logo me-2">
+                <span class="d-none d-md-inline">Romeiro e Lacerda</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link destaque" href="#tratamentos" 
+                           ng-click="scrollToSection('tratamentos', $event); activateTab('2', $event)">
+                           Procedimentos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link destaque" href="#resultados" 
+                           ng-click="scrollToSection('resultados', $event)">
+                           Resultados
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link destaque" href="#contato" 
+                           ng-click="scrollToSection('contato', $event)">
+                           Contato
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Seção Home -->
+    <section id="home" class="section">
+        <div class="intro-img">
+            <img src="assets/img/Clinica.jpg" alt="Clínica">
+        </div>
+        <div class="intro-text-overlay">
+            <h1 class="text-center">Romeiro e Lacerda</h1>
+            <p class="text-center">
+                <span class="text-bege">Estética e Reabilitação Oral</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Seção Resultados -->
+    <section id="resultados" class="section white-bg">
+        <div class="container">
+            <div class="main-content">
+                <h2 class="text-center mb-4">Resultados</h2>
+                <div class="image-grid">
+                    <div class="image-item" ng-repeat="i in [1,2,3,4,5,6,7,8]">
+                        <img ng-src="assets/img/Foto-resina{{i}}.jpg" alt="Resultado {{i}}" 
+                             class="paint-element" fade-rotate-effect>
+                    </div>
+                </div>
+                <div class="text-center mt-4">
+                    <a href="https://wa.me/5511999999999" class="btn btn-agenda" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        Agende sua consulta
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Lentes de Resina -->
+    <section id="lentes" class="section lentes-section white-bg">
+        <div class="container">
+            <div class="main-content">
+                <div class="row">
+                    <div class="col-12 text-center mb-4">
+                        <h2 class="lentes-title">
+                            <a href="#lentes" class="text-decoration-none">Lentes de Resina</a>
+                        </h2>
+                    </div>
+                </div>
+                
+                <div class="row align-items-start">
+                    <div class="col-lg-6">
+                        <h3 class="lentes-subtitle">O que é?</h3>
+                        <p class="lentes-text">
+                            As lentes de resina são uma solução estética inovadora para transformar o seu sorriso. 
+                            Feitas de material composto de alta qualidade, essas lentes são aplicadas diretamente 
+                            sobre os dentes, proporcionando um resultado natural e duradouro.
+                        </p>
+                        
+                        <div class="lentes-image-item">
+                            <img src="assets/img/Foto-3 sorriso.jpg" alt="Lente 1" 
+                                 class="img-fluid paint-element" fade-rotate-effect>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <h3 class="lentes-tipos-title mb-3">Tipos de Lentes de Resina</h3>
+                        
+                        <div class="lentes-tipo-box mb-3">
+                            <div class="lentes-tipo-subtitle" ng-click="toggleTexto('porcelanas')">
+                                Porcelanas
+                            </div>
+                            <div class="hidden-texto" ng-class="{'show-texto': mostrarTexto.porcelanas}">
+                                As lentes de porcelana oferecem máxima durabilidade e estética natural.
+                            </div>
+                        </div>
+                        
+                        <div class="lentes-tipo-box">
+                            <div class="lentes-tipo-subtitle" ng-click="toggleTexto('resina')">
+                                Lentes em Resina
+                            </div>
+                            <div class="hidden-texto" ng-class="{'show-texto': mostrarTexto.resina}">
+                                As lentes de resina são uma opção mais acessível com excelente resultado estético.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Tratamentos -->
+    <section id="tratamentos" class="section">
+        <div class="container">
+            <div class="main-content">
+                <h2 class="tratamentos-title">Outros Tratamentos</h2>
+                <p class="tratamentos-text">
+                    Oferecemos uma ampla gama de tratamentos odontológicos para cuidar da sua saúde bucal 
+                    e proporcionar o sorriso dos seus sonhos.
+                </p>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <!-- Nav tabs Bootstrap -->
+                        <ul class="nav nav-tabs" id="tratamentosTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="implantes-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#implantes" type="button" role="tab" 
+                                        aria-controls="implantes" aria-selected="true">
+                                    Implantes de Protocolo
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="clinico-tab" data-bs-toggle="tab" 
+                                        data-bs-target="#clinico" type="button" role="tab" 
+                                        aria-controls="clinico" aria-selected="false">
+                                    Clínico Geral
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Tab panes Bootstrap -->
+                        <div class="tab-content" id="tratamentosTabContent">
+                            <div class="tab-pane fade show active" id="implantes" role="tabpanel" 
+                                 aria-labelledby="implantes-tab">
+                                <p>
+                                    Os implantes de protocolo são uma solução avançada para a substituição de dentes perdidos. 
+                                    Consistem em um conjunto de implantes dentários suportando uma prótese fixa, 
+                                    proporcionando estabilidade, funcionalidade e um sorriso estético. 
+                                    Ideal para pacientes que buscam uma recuperação rápida e eficaz.
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="clinico" role="tabpanel" aria-labelledby="clinico-tab">
+                                <p><strong>• Limpeza e Prevenção:</strong> Realizamos limpezas profissionais para remover placa bacteriana, tártaro e manchas, prevenindo o acúmulo de cáries e doenças periodontais.</p>
+                                <p><strong>• Restaurações Dentárias:</strong> Oferecemos restaurações de alta qualidade, como obturações de resina composta, para tratar cáries e restaurar a integridade dos dentes afetados.</p>
+                                <p><strong>• Tratamento de Canal:</strong> Em casos de infecção ou danos severos na polpa do dente, nossos especialistas em endodontia realizam o tratamento de canal.</p>
+                                <p><strong>• Extrações Dentárias:</strong> Quando necessário, realizamos extrações dentárias com o máximo de cuidado e conforto para o paciente.</p>
+                                <p><strong>• Gengivoplastia:</strong> Cirurgia plástica que tem como objetivo corrigir a gengiva e o sorriso do paciente.</p>
+                                <p><strong>• Placa de Bruxismo:</strong> A placa miorrelaxante é indicada em casos que o ranger de dentes, ligado diretamente ou não ao bruxismo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="tratamentos-img">
+                            <img src="assets/img/Imagem-clinico.png" alt="Outros Tratamentos" 
+                                 class="img-fluid paint-element" fade-rotate-effect>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contato" class="section main-bg">
+        <div class="container">
+            <div class="main-content text-center">
+                <div class="avaliacao-container">
+                    <p class="text-bege mb-2">Avalie nosso atendimento</p>
+                    <h2 class="text-avaliacao">Deixe sua avaliação no Google</h2>
+                </div>
+                
+                <a href="https://wa.me/5511999999999" class="btn btn-whatsapp mt-4" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Fale Conosco
+                </a>
+                
+                <div class="horarios mt-4">
+                    <p class="mb-1">Segunda a Sexta: 8h às 18h</p>
+                    <p class="mb-0">Sábado: 8h às 12h</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-3 text-center">
+                    <img src="assets/img/Logo.jpg" alt="Logo" class="footer-logo mb-2">
+                    <p><strong>Romeiro e Lacerda</strong></p>
+                    <p>Estética e Reabilitação Oral</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <p><strong>Endereço:</strong></p>
+                    <p>Rua Exemplo, 123<br>
+                    Bairro - Cidade/SP<br>
+                    CEP: 00000-000</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <p><strong>Contato:</strong></p>
+                    <p>📞 (11) 9999-9999<br>
+                    📧 contato@romeirolacerda.com.br</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <p><strong>Redes Sociais:</strong></p>
+                                            <a href="https://www.instagram.com/romeiroelacerdadentista/" target="_blank" class="text-decoration-none">
+                            <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flutuante -->
+    <a href="https://wa.me/5511999999999" id="whatsapp-icon" target="_blank" 
+       ng-click="explodeWhatsApp($event)">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <!-- Bootstrap JS -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="app/app.js"></script>
+    <script src="app/controllers/mainController.js"></script>
+    <script src="app/services/analyticsService.js"></script>
+    <script src="app/directives/puzzleEffect.js"></script>
+</body>
+</html> 

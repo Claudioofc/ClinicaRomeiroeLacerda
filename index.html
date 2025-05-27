@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app="clinicaApp">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="msapplication-navbutton-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Clínica Odontológica</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
@@ -11,37 +14,43 @@
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-     <!-- Favicons -->
-     <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg">
-     <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png">
-     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png">
-     <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png">
-     <link rel="icon" href="assets/img/icons/favicon.ico" sizes="any">
-     <link rel="manifest" href="assets/img/icons/site.webmanifest">
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/icons/favicon-16x16.png">
+    <link rel="icon" href="assets/img/icons/favicon.ico" sizes="any">
+    <link rel="manifest" href="assets/img/icons/site.webmanifest">
 
-
-     <script src="script.js"></script>
+    <!-- AngularJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/mainController.js"></script>
+    <script src="app/services/analyticsService.js"></script>
+    <script src="app/directives/puzzleEffect.js"></script>
 </head>
 
-<body>
+<body ng-controller="MainController">
     <aside>
-        <input id="close-menu" class="close-menu" type="checkbox" aria-label="Close menu" role="button">
-        <label class="close-menu-label" for="close-menu" title="close menu">☰</label>
-        <div class="menu white-bg" id="header">
+        <input id="close-menu" class="close-menu" type="checkbox" aria-label="Close menu" role="button" ng-model="menuOpen">
+        <label class="close-menu-label" ng-click="toggleMenu($event)" title="close menu">☰</label>
+        <div class="menu white-bg" id="header" ng-class="{'shrink': shrinkHeader}">
             <div class="main-content menu-content">
-                <h1 onclick="getElementById('close-menu').checked = false;" class="Logo">
-                    <a href="#home" id="logo-link">
+                <h1 ng-click="closeMenu()" class="Logo">
+                    <a href="#home" id="logo-link" ng-click="scrollToTop($event)">
                         <img src="assets/img/Logo.jpg" alt="Logo" class="logo">
                     </a>
                 </h1>
                 <nav>
-                    <ul onclick="getElementById('close-menu').checked = false;">
-                        <li><a href="#tab-2" class="destaque">Procedimentos</a></li>
-                        <li><a href="#resultados" class="destaque">Resultados</a></li>
-                        <li><a href="#contato" class="destaque">Contato</a></li>
+                    <ul ng-click="closeMenu()">
+                        <li><a href="#tratamentos" class="destaque" ng-click="scrollToSection('tratamentos', $event); activateTab('2', $event)">Procedimentos</a></li>
+                        <li><a href="#resultados" class="destaque" ng-click="scrollToSection('resultados', $event)">Resultados</a></li>
+                        <li><a href="#contato" class="destaque" ng-click="scrollToSection('contato', $event)">Contato</a></li>
                     </ul>
                 </nav>
-                <label class="menu-toggle" for="close-menu">
+                <label class="menu-toggle" ng-click="toggleMenu($event)">
                     <div class="menu-icon"></div>
                 </label>
             </div>
@@ -56,7 +65,7 @@
             <div class="intro-text-overlay">
                 <h1>Romeiro e Lacerda</h1>
                 <p>
-                    <span class="text-bege">Estética e Reabilitação Oral</span>
+                    <span class="text-bege">Estética e Reabilitação Oral</span>
                 </p>
             </div>
         </div>
@@ -78,51 +87,28 @@
                 </div>
             </div>
             <div class="image-grid">
-                <div class="image-item">
-                    <img src="assets/img/img-resultados-7.webp" alt="Resultado 1">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina8.jpg" alt="Resultado 2">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina3.jpg" alt="Resultado 3">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina2.jpg" alt="Resultado 4">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina4.jpg" alt="Resultado 5">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina7.jpg" alt="Resultado 6">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina5.jpg" alt="Resultado 7">
-                </div>
-                <div class="image-item">
-                    <img src="assets/img/Foto-resina9.jpg" alt="Resultado 8">
+                <div class="image-item" ng-repeat="image in resultadosImages">
+                    <img ng-src="{{image.src}}" alt="{{image.alt}}" paint-effect>
                 </div>
             </div>
             <div class="agenda-button-container">
                 <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
-                    class="agenda-button" target="_blank">
+                    class="agenda-button" target="_blank" ng-click="trackWhatsAppClick('Resultados')">
                     <i class="fab fa-whatsapp"></i> Agenda Aberta
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Seção Lentes de Resina -->
     <section id="lentes" class="white-bg section">
         <div class="main-content">
             <div class="lentes-title-container">
                 <h1 class="lentes-title">
                     <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
-                        target="_blank">Lentes de Resinas</a>
+                        target="_blank" ng-click="trackWhatsAppClick('Lentes de Resina')">Lentes de Resinas</a>
                 </h1>
             </div>
             <div class="lentes-grid">
-                <!-- Texto e imagens à esquerda -->
                 <div class="lentes-left">
                     <h2 class="lentes-subtitle">O que é?</h2>
                     <p class="lentes-text">
@@ -135,32 +121,16 @@
                     </p>
                     <div class="lentes-images">
                         <div class="lentes-image-item">
-                            <img src="assets/img/Foto-3 sorriso.jpg" alt="Lente 1">
+                            <img src="assets/img/Foto-3 sorriso.jpg" alt="Lente 1" paint-effect>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tipos de Lentes de Resina à direita -->
                 <div class="lentes-right">
                     <h2 class="lentes-tipos-title">Tipos de Lentes de Resina</h2>
-                    <div class="lentes-tipo-box" onclick="toggleTexto(this)">
-                        <h3 class="lentes-tipo-subtitle" id="porcelanas">Porcelanas</h3>
-                        <p class="hidden-texto">
-                            Facetas em porcelana são lâminas finas, personalizadas, que cobrem a superfície dos dentes
-                            para corrigir imperfeições e melhorar o sorriso. Duráveis e estéticas, elas oferecem uma
-                            solução de alta qualidade para dentes manchados, desgastados ou desiguais, proporcionando um
-                            sorriso natural e brilhante.
-                        </p>
-                    </div>
-                    <div class="lentes-tipo-box" onclick="toggleTexto(this)">
-                        <h3 class="lentes-tipo-subtitle" id="lentes-resina">Lentes em Resina</h3>
-                        <p class="hidden-texto">
-                            Nossa técnica é projetada para proporcionar uma aparência esteticamente uniforme, sem
-                            detalhes anatômicos proeminentes.
-                            Suavidade e Alignamento: Criamos sorrisos elegantes e harmoniosos, com uma superfície suave
-                            e dentes perfeitamente alinhados.
-                            <br><br>Resina importada e Longevidade +10 anos.
-                        </p>
+                    <div class="lentes-tipo-box" ng-repeat="tipo in tiposLentes" ng-click="toggleTexto($event)">
+                        <h3 class="lentes-tipo-subtitle" id="{{tipo.id}}" ng-class="{'active': tipo.active}">{{tipo.titulo}}</h3>
+                        <p class="hidden-texto" ng-class="{'show-texto': tipo.active}">{{tipo.texto}}</p>
                     </div>
                 </div>
             </div>
@@ -175,73 +145,25 @@
                 gama completa de serviços odontológicos.
             </p>
             <div class="tratamentos-content">
-                <!-- Conteúdo à esquerda (abas) -->
                 <div class="tratamentos-left">
-                    <!-- Abas -->
                     <div class="tabs">
-                        <!-- Botões das abas -->
                         <div class="tabs-buttons">
-                            <button class="tab-button active" data-tab="1">Implantes de Protocolo</button>
-                            <button class="tab-button" data-tab="2">Procedimentos</button>
+                            <button class="tab-button" ng-class="{'active': tab.active}" ng-repeat="tab in tabs" ng-click="setActiveTab(tab.id)">{{tab.title}}</button>
                         </div>
 
-                        <!-- Conteúdo das abas -->
                         <div class="tabs-content">
-                            <!-- Aba 1: Implantes de Protocolo -->
-                            <div id="tab-1" class="tab-content active">
-                                <p>
-                                    Os implantes de protocolo são uma solução avançada para a substituição de dentes
-                                    perdidos.
-                                    Consistem em um conjunto de implantes dentários suportando uma prótese fixa,
-                                    proporcionando
-                                    estabilidade, funcionalidade e um sorriso estético. Ideal para pacientes que buscam
-                                    uma
-                                    recuperação rápida e eficaz.
-                                </p>
-                            </div>
-
-                            <!-- Aba 2: Procedimentos -->
-                            <div id="tab-2" class="tab-content">
-                                <p>
-                                    • <strong>Limpeza e Prevenção:</strong> Realizamos limpezas profissionais para
-                                    remover
-                                    placa bacteriana, tártaro e manchas, prevenindo o acúmulo de cáries e doenças
-                                    periodontais.
-                                </p>
-                                <p>
-                                    • <strong>Restaurações Dentárias:</strong> Oferecemos restaurações de alta
-                                    qualidade, como
-                                    obturações de resina composta, para tratar cáries e restaurar a integridade dos
-                                    dentes afetados.
-                                </p>
-                                <p>
-                                    • <strong>Tratamento de Canal:</strong> Em casos de infecção ou danos severos na
-                                    polpa do
-                                    dente, nossos especialistas em endodontia realizam o tratamento de canal.
-                                </p>
-                                <p>
-                                    • <strong>Extrações Dentárias:</strong> Quando necessário, realizamos extrações
-                                    dentárias
-                                    com o máximo de cuidado e conforto para o paciente.
-                                </p>
-                                <p>
-                                    • <strong>Gengivoplastia:</strong> Cirurgia plástica que tem como objetivo corrigir
-                                    a
-                                    gengiva e o sorriso do paciente.
-                                </p>
-                                <p>
-                                    • <strong>Placa de Bruxismo:</strong> A placa miorrelaxante é indicada em casos que
-                                    o
-                                    ranger de dentes, ligado diretamente ou não ao bruxismo.
-                                </p>
+                            <div ng-repeat="tab in tabs" 
+                                 id="tab-{{tab.id}}" 
+                                 class="tab-content"
+                                 ng-class="{'active': tab.active}"
+                                 ng-bind-html="tab.content">
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Imagem à direita -->
                 <div class="tratamentos-img">
-                    <img src="assets/img/Imagem-clinico.png" alt="Outros Tratamentos">
+                    <img src="assets/img/Imagem-clinico.png" alt="Outros Tratamentos" paint-effect>
                 </div>
             </div>
         </div>
@@ -256,7 +178,7 @@
                 <h2 class="text">Seu sorriso é nossa prioridade. Transforme-o com a nossa expertise e confiança</h2>
                 <div class="contact-info">
                     <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
-                        class="whatsapp-button" target="_blank">
+                        class="whatsapp-button" target="_blank" ng-click="trackWhatsAppClick('Contato')">
                         <i class="fab fa-whatsapp"></i> (31) 99124-2925
                     </a>
                     <p class="horarios">
@@ -272,7 +194,7 @@
         <div class="footer-container">
             <div class="footer-column">
                 <img src="assets/img/Logo.jpg" alt="Logo romeiro e lacerda" class="footer-logo">
-                <p>ROMEIRO E LACERDA ODONTOLOGIA LTDA<br>
+                <p>ROMEIRO E LACERDA ODONTOLOGIA LTDA<br>
                     50.890.310/0001-05<br>
                     <br>CRO-MG 58624
                 </p>
@@ -286,15 +208,13 @@
                 <strong>(31) 991242925</strong></p>
             </div>
             <div class="footer-column">
-                <a href="https://www.instagram.com/romeiroelacerda.odontologia/" target="_blank"
-                    rel="noopener noreferrer">
+                <a href="https://www.instagram.com/romeiroelacerdadentista/" target="_blank"
+                    rel="noopener noreferrer" ng-click="trackWhatsAppClick('Instagram Footer')">
                     <i class="fab fa-instagram"></i>
                 </a>
             </div>
         </div>
     </footer>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

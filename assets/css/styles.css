@@ -225,8 +225,21 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.3;
+  opacity: 0;
   filter: blur(2px);
+  animation: fadeInBackground 1.5s ease-out forwards;
+}
+
+/* Animação para a imagem de fundo */
+@keyframes fadeInBackground {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
 }
 
 .intro-text-overlay {
@@ -235,12 +248,18 @@ p {
   color: white;
   max-width: 800px;
   padding: 0 2rem;
+  overflow: hidden; /* Para esconder o texto durante a animação */
 }
 
 .intro-text-overlay h1 {
   font-size: 48px;
   margin-bottom: 2rem;
   font-weight: 700;
+  position: relative; /* Necessário para o pseudo-elemento */
+  /* Efeito de entrada da direita */
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 0.5s forwards;
 }
 
 .intro-text-overlay p {
@@ -248,6 +267,91 @@ p {
   color: var(--secondary-color);
   text-align: center; /* Centralizado na seção de introdução */
   font-weight: 500; /* Peso da fonte (medium) */
+  position: relative; /* Necessário para o pseudo-elemento */
+  /* Efeito de entrada da direita com delay */
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 1.2s forwards;
+}
+
+.intro-text-overlay p .text-bege {
+  position: relative; /* Necessário para o pseudo-elemento */
+  display: inline-block;
+}
+
+/* Animação de deslizar da direita para o centro */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Efeito de brilho removido */
+
+/* Responsividade para o efeito */
+@media (max-width: 768px) {
+  /* Remove borda dourada do mobile */
+  html {
+    border: none !important;
+    outline: none !important;
+  }
+
+  body {
+    border: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  * {
+    border: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
+  }
+
+  /* Remove qualquer borda ou outline de elementos específicos */
+  input, button, a, div, section, nav, header, footer {
+    border: none !important;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+
+  /* Remove bordas específicas do mobile */
+  .menu, #header, .section, .image-item, .logo {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove qualquer borda dourada do viewport */
+  html, body {
+    background-color: #ffffff !important;
+    border-color: transparent !important;
+  }
+
+  /* Remove bordas de elementos interativos */
+  a:focus, button:focus, input:focus {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .intro-text-overlay h1 {
+    font-size: 36px;
+    animation: slideInFromRight 1s ease-out 0.3s forwards;
+  }
+  
+  .intro-text-overlay p {
+    font-size: 1.8rem;
+    animation: slideInFromRight 1s ease-out 0.8s forwards;
+  }
 }
 
 .text h2 {
@@ -454,25 +558,34 @@ p {
   background-color: #000000; /* Fundo preto */
   padding: 10px 15px; /* Adiciona um pouco de espaço interno */
   text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Sinal de + padrão */
+/* Sinal de + no final sem borda */
 .lentes-tipo-subtitle::after {
-  content: " +";
+  content: "+";
   font-size: 24px;
   color: rgb(239, 191, 86); /* Cor do sinal de + */
-  margin-left: 0.5rem;
+  font-weight: normal;
   transition: transform 0.3s ease;
+  flex-shrink: 0;
 }
 
 /* Sinal de - quando a caixa está aberta */
 .lentes-tipo-subtitle.active::after {
-  content: " -";
+  content: "−";
+  transform: rotate(0deg);
 }
 
 /* Efeito de hover no sinal de + */
 .lentes-tipo-subtitle:hover::after {
   transform: rotate(90deg);
+}
+
+.lentes-tipo-subtitle.active:hover::after {
+  transform: rotate(0deg);
 }
 
 /* Estilo para o texto oculto */
@@ -550,7 +663,7 @@ p {
   gap: 2rem; /* Espaço entre as caixas */
 }
 
-/* Estilos para as abas */
+/* Estilos para as abas - Layout igual à imagem */
 .tabs {
   width: 100%;
   text-align: left;
@@ -558,35 +671,36 @@ p {
 
 .tabs-buttons {
   display: flex;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 2px;
+  margin-bottom: 10px;
 }
 
 .tab-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
-  padding: 15px 20px;
-  font-size: 1.8rem;
+  padding: 15px 30px;
+  font-size: 1.6rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
 .tab-button.active {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  font-weight: 700;
 }
 
-.tab-content.active {
-  display: block;
-}
-
-.tab-button:hover {
-  background-color: var(--primary-color);
+.tab-button:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .tabs-content {
   width: 100%;
+  background-color: white;
+  padding: 25px;
 }
 
 .tab-content {
@@ -639,10 +753,21 @@ p {
 
   .tabs-buttons {
     flex-direction: column;
+    gap: 2px;
   }
 
   .tab-button {
     width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .tab-button:last-child {
+    margin-bottom: 0;
+  }
+
+  .tabs-content {
+    border-radius: 8px;
+    margin-top: 15px;
   }
 }
 
@@ -701,48 +826,7 @@ p {
   transform: scale(1.05);
 }
 
-/* Botão do WhatsApp Flutuante */
-#whatsapp-icon {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  color: white;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  z-index: 1000;
-}
 
-#whatsapp-icon i {
-  font-size: 45px;
-}
-
-/* Animação de Explosão */
-@keyframes explode {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.5);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Classe para aplicar a animação */
-.explode-effect {
-  animation: explode 0.5s ease-out forwards;
-}
 
 .horarios {
   color: white;
@@ -960,24 +1044,7 @@ p {
     min-width: 100%;
   }
 
-  @keyframes explode {
-    0% {
-      transform: scale(1);
-    }
 
-    50% {
-      transform: scale(1.5);
-    }
-
-    100% {
-      transform: scale(1);
-    }
-  }
-
-  /* Classe para aplicar a animação de clique */
-  .explode-effect {
-    animation: explode 0.5s ease-out;
-  }
 
   /* Ajustes para a seção de lentes em mobile */
   .lentes-grid {
@@ -1007,4 +1074,111 @@ p {
     height: auto; /* Altura automática para manter a proporção */
     max-width: 100%; /* Garante que a imagem não ultrapasse o container */
   }
+}
+
+/* Novo efeito de montagem suave */
+.paint-element {
+    opacity: 0;
+    position: relative;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(5px) brightness(0.7);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.paint-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(239, 191, 86, 0.8) 0%,
+        rgba(239, 191, 86, 0.4) 50%,
+        transparent 100%
+    );
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: all 1s ease-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Remove o overlay em mobile */
+@media (max-width: 768px) {
+    .paint-element::before {
+        display: none !important;
+    }
+    
+    .paint-active::before {
+        display: none !important;
+    }
+}
+
+.paint-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1);
+}
+
+.paint-active::before {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Efeito de brilho das imagens removido */
+
+/* Atrasos escalonados para cada imagem */
+.image-item:nth-child(1) .paint-element { transition-delay: 0.1s; }
+.image-item:nth-child(2) .paint-element { transition-delay: 0.2s; }
+.image-item:nth-child(3) .paint-element { transition-delay: 0.3s; }
+.image-item:nth-child(4) .paint-element { transition-delay: 0.4s; }
+.image-item:nth-child(5) .paint-element { transition-delay: 0.5s; }
+.image-item:nth-child(6) .paint-element { transition-delay: 0.6s; }
+.image-item:nth-child(7) .paint-element { transition-delay: 0.7s; }
+.image-item:nth-child(8) .paint-element { transition-delay: 0.8s; }
+
+/* Efeito hover melhorado */
+.paint-active:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.1) contrast(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .paint-element {
+        opacity: 0 !important; /* Inicia invisível em mobile */
+        transform: translateY(30px) scale(0.95) !important; /* Efeito mais sutil em mobile */
+        filter: blur(3px) brightness(0.8) !important; /* Filtros mais suaves em mobile */
+        transition: all 0.8s ease-out !important; /* Transição mais rápida em mobile */
+    }
+    
+    .paint-active {
+        opacity: 1 !important;
+        transform: translateY(0) scale(1) !important;
+        filter: blur(0) brightness(1) !important;
+    }
+    
+    /* Delays escalonados para mobile */
+    .image-item:nth-child(1) .paint-element { transition-delay: 0.1s !important; }
+    .image-item:nth-child(2) .paint-element { transition-delay: 0.2s !important; }
+    .image-item:nth-child(3) .paint-element { transition-delay: 0.3s !important; }
+    .image-item:nth-child(4) .paint-element { transition-delay: 0.4s !important; }
+    .image-item:nth-child(5) .paint-element { transition-delay: 0.5s !important; }
+    .image-item:nth-child(6) .paint-element { transition-delay: 0.6s !important; }
+    .image-item:nth-child(7) .paint-element { transition-delay: 0.7s !important; }
+    .image-item:nth-child(8) .paint-element { transition-delay: 0.8s !important; }
+}
+
+/* Remover estilos antigos do quebra-cabeça */
+.puzzle-container,
+.puzzle-piece,
+.puzzle-piece.glow {
+    display: none !important;
+}
+
+@keyframes puzzlePieceGlow {
+    0%, 100% { opacity: 0; }
 }

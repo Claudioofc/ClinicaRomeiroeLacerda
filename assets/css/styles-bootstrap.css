@@ -1,0 +1,852 @@
+/* Bootstrap + Customizações da Clínica Odontológica */
+
+:root {
+  --gap: 3rem;
+  --white-color: #ffffff;
+  --primary-color: #000000;
+  --secondary-color: #efbf56; /* Bege */
+  --light-gray-color: #cccccc;
+  --header-bg-color: rgba(245, 245, 245, 0.9); /* Cinza claro com transparência */
+  --toggle-color: #333333; /* Cinza escuro para o toggle */
+}
+
+/* Reset e configurações básicas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Urbanist", sans-serif !important;
+  font-size: 2rem;
+  color: var(--primary-color);
+  line-height: 1.5;
+}
+
+/* Sobrescrever estilos do Bootstrap para manter design atual */
+.container-fluid {
+  padding: 0;
+}
+
+.main-content {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 3rem var(--gap);
+}
+
+/* Typography - Bootstrap Override */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Urbanist", sans-serif !important;
+}
+
+h1 {
+  line-height: 1.1 !important;
+}
+
+h2 {
+  font-size: 60px !important;
+  margin-bottom: 2rem !important;
+  font-weight: 700 !important;
+}
+
+.grid-main-heading {
+  font-size: 55px !important;
+  margin-bottom: 2rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-size: 3rem !important;
+}
+
+p {
+  font-size: 1.8rem !important;
+  line-height: 1.6 !important;
+  color: var(--primary-color) !important;
+  margin-bottom: 2rem !important;
+  text-align: left;
+  font-weight: 400;
+}
+
+/* Background Classes */
+.main-bg {
+  background-color: #000000 !important;
+  color: var(--white-color) !important;
+}
+
+.white-bg {
+  background: var(--white-color) !important;
+  color: var(--primary-color) !important;
+}
+
+/* Section */
+.section {
+  min-height: 60vh;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.lentes-section {
+  min-height: 300px;
+}
+
+#contato {
+  min-height: 40vh;
+}
+
+/* Menu/Navbar - Bootstrap Override */
+.navbar {
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  background: var(--header-bg-color) !important;
+  border-bottom: 0.1rem solid var(--light-gray-color);
+  padding: 1rem 0 !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+  height: 160px;
+}
+
+.navbar.shrink {
+  padding: 1.5rem 0 !important;
+  height: 80px;
+}
+
+.navbar-brand {
+  font-size: 2.3rem !important;
+  color: var(--primary-color) !important;
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+  font-size: 1.8rem !important;
+  color: var(--primary-color) !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  margin: 0 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--secondary-color) !important;
+}
+
+.navbar-nav .nav-link.destaque {
+  color: var(--secondary-color) !important;
+  font-weight: bold;
+}
+
+.navbar-toggler {
+  border: none !important;
+  padding: 0.25rem 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+
+/* Logo */
+.logo {
+  width: 120px;
+  height: auto;
+  border-radius: 100%;
+  transition: width 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.navbar.shrink .logo {
+  width: 60px;
+}
+
+/* Seção de Introdução */
+#home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.intro-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  filter: blur(2px);
+  animation: fadeInBackground 1.5s ease-out forwards;
+}
+
+@keyframes fadeInBackground {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+
+.intro-text-overlay {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 800px;
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.intro-text-overlay h1 {
+  font-size: 48px !important;
+  margin-bottom: 2rem !important;
+  font-weight: 700 !important;
+  position: relative;
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 0.5s forwards;
+}
+
+.intro-text-overlay p {
+  font-size: 2rem !important;
+  color: var(--secondary-color) !important;
+  text-align: center !important;
+  font-weight: 500 !important;
+  position: relative;
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 1.2s forwards;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.text-bege {
+  color: var(--secondary-color) !important;
+}
+
+/* Grid de Imagens - Bootstrap Grid Override */
+.image-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.image-item {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.image-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 10px;
+}
+
+.image-item:hover::before {
+  opacity: 1;
+}
+
+.image-item:hover img {
+  filter: brightness(0.8);
+}
+
+/* Botões - Bootstrap Override */
+.btn-agenda {
+  display: inline-flex !important;
+  align-items: center;
+  background-color: #333333 !important;
+  color: #efbf56 !important;
+  padding: 1.2rem 1.8rem !important;
+  text-decoration: none;
+  font-size: 1.8rem !important;
+  font-weight: bold !important;
+  border: none !important;
+  transition: transform 0.3s ease;
+}
+
+.btn-agenda i {
+  margin-right: 0.5rem;
+  font-size: 1.8rem;
+  color: white;
+  background: #25D366;
+  border-radius: 50%;
+  border: 0.6rem solid #25D366;
+}
+
+.btn-agenda:hover {
+  transform: scale(1.1);
+  color: #efbf56 !important;
+}
+
+.btn-whatsapp {
+  display: inline-flex !important;
+  align-items: center;
+  background-image: linear-gradient(90deg, #5CD466 0%, #2E6A33 100%) !important;
+  color: white !important;
+  padding: 1rem 2rem !important;
+  font-size: 30px !important;
+  font-weight: bold !important;
+  text-decoration: none;
+  border: none !important;
+  transition: transform 0.3s ease;
+}
+
+.btn-whatsapp i {
+  margin-right: 1rem;
+  font-size: 2rem;
+}
+
+.btn-whatsapp:hover {
+  transform: scale(1.05);
+  color: white !important;
+}
+
+/* Seção de Lentes */
+.lentes-title {
+  font-size: 35px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+}
+
+.lentes-subtitle {
+  font-size: 30px !important;
+  font-weight: bold !important;
+  color: #000 !important;
+  margin-bottom: 0.5rem;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.lentes-text {
+  font-size: 1.6rem !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+  text-align: left;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.lentes-image-item img {
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lentes-tipo-box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.lentes-tipo-subtitle {
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: rgb(239, 191, 86) !important;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: left;
+  background-color: #000000;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lentes-tipo-subtitle::after {
+  content: "+";
+  font-size: 24px;
+  color: rgb(239, 191, 86);
+  font-weight: normal;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.lentes-tipo-subtitle.active::after {
+  content: "−";
+  transform: rotate(0deg);
+}
+
+.lentes-tipo-subtitle:hover::after {
+  transform: rotate(90deg);
+}
+
+.lentes-tipo-subtitle.active:hover::after {
+  transform: rotate(0deg);
+}
+
+.hidden-texto {
+  display: none;
+  font-size: 16px !important;
+  line-height: 1.5;
+  color: #333;
+  margin-top: 0.5rem;
+  background-color: #ffffff;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-weight: 700;
+  width: 100%;
+  text-align: left;
+}
+
+.show-texto {
+  display: block;
+}
+
+/* Seção de Tratamentos */
+#tratamentos {
+  padding: 5rem 0;
+  background-color: #fefcf7;
+}
+
+.tratamentos-title {
+  font-size: 48px !important;
+  font-weight: 700 !important;
+  color: var(--primary-color) !important;
+  text-align: left;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.tratamentos-text {
+  font-size: 1.8rem !important;
+  color: var(--primary-color) !important;
+  text-align: left;
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.tratamentos-img img {
+  width: 500px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs - Bootstrap Override */
+.nav-tabs {
+  border-bottom: none !important;
+  margin-bottom: 10px;
+  gap: 2px;
+}
+
+.nav-tabs .nav-link {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+  border: none !important;
+  padding: 15px 30px !important;
+  font-size: 1.6rem !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0 !important;
+  margin-right: 2px;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: 700 !important;
+  border: none !important;
+}
+
+.nav-tabs .nav-link:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.tab-content {
+  background-color: white;
+  padding: 25px;
+}
+
+.tab-pane p {
+  font-size: 1.6rem !important;
+  line-height: 1.5 !important;
+  color: #333 !important;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+/* WhatsApp Flutuante */
+#whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: white;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  z-index: 1000;
+}
+
+#whatsapp-icon i {
+  font-size: 45px;
+}
+
+/* Animações */
+@keyframes explode {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+.explode-effect {
+  animation: explode 0.5s ease-out forwards;
+}
+
+/* Footer - Bootstrap Override */
+.footer {
+  background-color: var(--white-color) !important;
+  padding: 1rem;
+  border-top: 1px solid #ccc;
+  font-size: 1.6rem !important;
+  color: #000 !important;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 1.6rem !important;
+  line-height: 1.1 !important;
+  color: #000 !important;
+  margin: 0.1rem 0 !important;
+  font-weight: 400;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover {
+  color: var(--secondary-color) !important;
+}
+
+.footer-logo {
+  width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+  max-width: 100px;
+}
+
+.fa-instagram {
+  font-size: 3rem;
+  color: #E1306C;
+  transition: transform 0.3s ease;
+}
+
+.fa-instagram:hover {
+  transform: scale(1.1);
+}
+
+/* Efeitos de Imagem */
+.paint-element {
+    opacity: 0;
+    position: relative;
+    transform: translateY(50px) scale(0.9);
+    filter: blur(5px) brightness(0.7);
+    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.paint-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, 
+        rgba(239, 191, 86, 0.8) 0%,
+        rgba(239, 191, 86, 0.4) 50%,
+        transparent 100%
+    );
+    opacity: 1;
+    transform: translateX(-100%);
+    transition: all 1s ease-out;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.paint-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0) brightness(1);
+}
+
+.paint-active::before {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+/* Atrasos escalonados */
+.image-item:nth-child(1) .paint-element { transition-delay: 0.1s; }
+.image-item:nth-child(2) .paint-element { transition-delay: 0.2s; }
+.image-item:nth-child(3) .paint-element { transition-delay: 0.3s; }
+.image-item:nth-child(4) .paint-element { transition-delay: 0.4s; }
+.image-item:nth-child(5) .paint-element { transition-delay: 0.5s; }
+.image-item:nth-child(6) .paint-element { transition-delay: 0.6s; }
+.image-item:nth-child(7) .paint-element { transition-delay: 0.7s; }
+.image-item:nth-child(8) .paint-element { transition-delay: 0.8s; }
+
+.paint-active:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.1) contrast(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+/* Responsividade - Bootstrap Breakpoints */
+@media (max-width: 768px) {
+  html {
+    font-size: 55%;
+  }
+
+  h1 {
+    font-size: 3rem !important;
+  }
+
+  h2 {
+    font-size: 2.5rem !important;
+  }
+
+  h3 {
+    font-size: 2rem !important;
+  }
+
+  .navbar {
+    height: auto !important;
+    padding: 1rem 0 !important;
+  }
+
+  .navbar.shrink {
+    padding: 1rem 0 !important;
+    height: auto !important;
+  }
+
+  .logo {
+    width: 80px;
+  }
+
+  .navbar.shrink .logo {
+    width: 60px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1.8rem !important;
+    font-weight: 500;
+    margin: 0.5rem 0;
+  }
+
+  .intro-text-overlay h1 {
+    font-size: 36px !important;
+    animation: slideInFromRight 1s ease-out 0.3s forwards;
+  }
+  
+  .intro-text-overlay p {
+    font-size: 1.8rem !important;
+    animation: slideInFromRight 1s ease-out 0.8s forwards;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .image-item {
+    width: 165px;
+    height: 215px;
+    margin: 0 auto;
+  }
+
+  .lentes-image-item img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100%;
+  }
+
+  .tratamentos-img img {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  .nav-tabs {
+    flex-direction: column !important;
+    gap: 2px;
+  }
+
+  .nav-tabs .nav-link {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 2px;
+  }
+
+  .tab-content {
+    margin-top: 15px;
+  }
+
+  /* Mobile - Sem efeitos de transparência */
+  .paint-element {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  
+  .paint-active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: none;
+  }
+  
+  .image-item:nth-child(n) .paint-element { 
+    transition-delay: 0s !important;
+  }
+
+  .paint-element::before {
+    display: none;
+  }
+  
+  .paint-active::before {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .image-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .main-content {
+    padding: 2rem 1rem;
+  }
+  
+  .tratamentos-title {
+    font-size: 36px !important;
+  }
+  
+  .intro-text-overlay h1 {
+    font-size: 28px !important;
+  }
+}
+
+/* Utilities - Bootstrap Override */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.align-items-center {
+  align-items: center !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 3rem !important;
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mt-3 {
+  margin-top: 3rem !important;
+}
+
+.p-0 {
+  padding: 0 !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+} 

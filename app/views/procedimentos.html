@@ -1,0 +1,17 @@
+<section class="white-bg section">
+    <div class="main-content">
+        <h2 class="section-title">Nossos Procedimentos</h2>
+        <div class="procedimentos-grid">
+            <div class="procedimento-item" ng-repeat="proc in procedimentos">
+                <h3>{{proc.title}}</h3>
+                <p>{{proc.description}}</p>
+            </div>
+        </div>
+        <div class="agenda-button-container">
+            <a ng-href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
+                class="agenda-button" target="_blank" ng-click="trackWhatsAppClick('Procedimentos')">
+                <i class="fab fa-whatsapp"></i> Agende sua Consulta
+            </a>
+        </div>
+    </div>
+</section> 
