@@ -71,6 +71,42 @@ angular.module('clinicaApp', [
     }
   };
 
+  // Função para navegação suave com fechamento do menu
+  $scope.scrollToSection = function(sectionId, event) {
+    if (event) {
+      event.preventDefault();
+    }
+    
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+      // Fechar o menu mobile Bootstrap
+      const navbarCollapse = document.querySelector('#navbarNav');
+      if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+          toggle: false
+        });
+        bsCollapse.hide();
+        
+        // Restaurar posição do body se estava fixo
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+      }
+      
+      // Calcular posição considerando o header
+      const navbar = document.querySelector('.navbar');
+      const navbarHeight = navbar ? navbar.offsetHeight : 0;
+      const elementPosition = targetElement.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+      // Scroll suave para a seção
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   // Rolagem para o topo ao clicar na logo
   $scope.scrollToTop = function() {
     $window.scrollTo({
@@ -237,6 +273,43 @@ angular.module('clinicaApp', [
       logoImg.addEventListener('click', scrollToTop);
       logoImg.style.cursor = 'pointer';
     }
+
+    // Navegação suave para links do menu Bootstrap
+    document.querySelectorAll('.nav-link[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          // Fechar o menu mobile Bootstrap
+          const navbarCollapse = document.querySelector('#navbarNav');
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+              toggle: false
+            });
+            bsCollapse.hide();
+            
+            // Restaurar posição do body se estava fixo
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+          }
+          
+          // Calcular posição considerando o header
+          const navbar = document.querySelector('.navbar');
+          const navbarHeight = navbar ? navbar.offsetHeight : 0;
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+          // Scroll suave para a seção
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
 
     // Manter posição da página ao abrir/fechar menu toggle no Bootstrap
     if (menuToggle && navbarCollapse) {

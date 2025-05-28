@@ -759,28 +759,27 @@ p {
   }
 
   /* Centralizar imagem principal em mobile */
-  .intro-img img {
-    object-fit: cover !important;
-    object-position: center center !important;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 100vh !important; /* Garante altura mínima */
-    transform: none !important; /* Remove qualquer transformação que possa causar quebra */
-  }
-
-  /* Ajustes específicos para a seção home em mobile */
-  #home {
-    min-height: 100vh !important;
-    overflow: hidden !important; /* Evita quebras visuais */
-  }
-
   .intro-img {
+    overflow: hidden !important;
     position: absolute !important;
     top: 0 !important;
     left: 0 !important;
     width: 100% !important;
     height: 100% !important;
-    overflow: hidden !important; /* Evita quebras */
+  }
+
+  .intro-img img {
+    object-fit: cover !important;
+    object-position: 50% 50% !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    max-width: none !important;
+    transform: none !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
   }
 
   .intro-text-overlay h1 {
@@ -939,33 +938,6 @@ p {
   
   .intro-text-overlay h1 {
     font-size: 28px !important;
-  }
-
-  /* Configurações específicas para smartphones muito pequenos */
-  .intro-img img {
-    object-fit: cover !important;
-    object-position: center 30% !important; /* Ajusta o foco da imagem para uma área mais interessante */
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 100vh !important;
-    transform: none !important;
-  }
-
-  #home {
-    min-height: 100vh !important;
-    overflow: hidden !important;
-  }
-
-  .intro-text-overlay {
-    padding: 0 1rem !important; /* Reduz padding em telas muito pequenas */
-  }
-
-  .intro-text-overlay h1 {
-    font-size: 24px !important; /* Reduz ainda mais o tamanho em telas pequenas */
-  }
-
-  .intro-text-overlay p {
-    font-size: 1.4rem !important; /* Reduz tamanho do texto */
   }
 }
 
