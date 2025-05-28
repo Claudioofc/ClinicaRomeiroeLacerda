@@ -50,20 +50,13 @@ h1 {
 }
 
 h2 {
-  font-size: 60px !important;
-  margin-bottom: 2rem !important;
-  font-weight: 700 !important;
-}
-
-.grid-main-heading {
-  font-size: 55px !important;
-  margin-bottom: 2rem !important;
-  font-weight: 700 !important;
-  text-transform: uppercase;
+  font-size: 60px;
+  margin-bottom: 2rem;
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 3rem !important;
+  font-size: 3rem;
 }
 
 p {
@@ -77,7 +70,7 @@ p {
 
 /* Background Classes */
 .main-bg {
-  background-color: #000000 !important;
+  background-color: #333333 !important; /* Mesma cor dos botões Procedimentos */
   color: var(--white-color) !important;
 }
 
@@ -129,11 +122,13 @@ p {
 }
 
 .navbar-nav .nav-link {
-  font-size: 1.8rem !important;
+  font-size: 2.2rem !important;
   color: var(--primary-color) !important;
   text-decoration: none;
   transition: color 0.3s ease;
   margin: 0 1rem;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px !important;
 }
 
 .navbar-nav .nav-link:hover {
@@ -142,7 +137,7 @@ p {
 
 .navbar-nav .nav-link.destaque {
   color: var(--secondary-color) !important;
-  font-weight: bold;
+  font-weight: 600 !important;
 }
 
 .navbar-toggler {
@@ -332,17 +327,18 @@ p {
   align-items: center;
   background-image: linear-gradient(90deg, #5CD466 0%, #2E6A33 100%) !important;
   color: white !important;
-  padding: 1rem 2rem !important;
-  font-size: 30px !important;
+  padding: 1.2rem 2rem !important;
+  font-size: 32px !important;
   font-weight: bold !important;
   text-decoration: none;
   border: none !important;
   transition: transform 0.3s ease;
+  margin-top: 1.5rem !important;
 }
 
 .btn-whatsapp i {
-  margin-right: 1rem;
-  font-size: 2rem;
+  margin-right: 1rem !important;
+  font-size: 2.2rem !important;
 }
 
 .btn-whatsapp:hover {
@@ -398,11 +394,11 @@ p {
 .lentes-tipo-subtitle {
   font-size: 20px !important;
   font-weight: bold !important;
-  color: rgb(239, 191, 86) !important;
+  color: #efbf56 !important;
   margin-bottom: 0.5rem;
   width: 100%;
   text-align: left;
-  background-color: #000000;
+  background-color: #333333;
   padding: 10px 15px;
   text-transform: uppercase;
   display: flex;
@@ -413,7 +409,7 @@ p {
 .lentes-tipo-subtitle::after {
   content: "+";
   font-size: 24px;
-  color: rgb(239, 191, 86);
+  color: #efbf56;
   font-weight: normal;
   transition: transform 0.3s ease;
   flex-shrink: 0;
@@ -453,7 +449,7 @@ p {
 /* Seção de Tratamentos */
 #tratamentos {
   padding: 5rem 0;
-  background-color: #fefcf7;
+  background-color: #e8e8e8; /* Cor de fundo cinza mais escura */
 }
 
 .tratamentos-title {
@@ -490,7 +486,7 @@ p {
 }
 
 .nav-tabs .nav-link {
-  background-color: var(--primary-color) !important;
+  background-color: #333333 !important;
   color: white !important;
   border: none !important;
   padding: 15px 30px !important;
@@ -503,14 +499,15 @@ p {
 }
 
 .nav-tabs .nav-link.active {
-  background-color: var(--secondary-color) !important;
-  color: var(--primary-color) !important;
+  background-color: #333333 !important;
+  color: #efbf56 !important;
   font-weight: 700 !important;
   border: none !important;
 }
 
 .nav-tabs .nav-link:hover:not(.active) {
-  background-color: rgba(0, 0, 0, 0.8) !important;
+  /* Removendo o efeito de hover */
+  background-color: #333333 !important;
   border: none !important;
   color: white !important;
 }
@@ -609,61 +606,66 @@ p {
   transform: scale(1.1);
 }
 
-/* Efeitos de Imagem */
-.paint-element {
-    opacity: 0;
-    position: relative;
-    transform: translateY(50px) scale(0.9);
-    filter: blur(5px) brightness(0.7);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+/* Efeito de Montagem Alternada - Versão Bootstrap */
+.alternate-element {
+    opacity: 0 !important;
+    position: relative !important;
+    transition: all 0.3s ease-out !important;
+    filter: blur(8px) !important;
 }
 
-.paint-element::before {
+.alternate-element.alternate-from-left {
+    transform: translateX(-100px) scale(0.8) !important;
+}
+
+.alternate-element.alternate-from-right {
+    transform: translateX(100px) scale(0.8) !important;
+}
+
+.alternate-element.alternate-active {
+    opacity: 1 !important;
+    transform: translateX(0) scale(1) !important;
+    filter: blur(0) !important;
+}
+
+/* Efeito de brilho após a montagem */
+.alternate-element.alternate-active::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(239, 191, 86, 0.8) 0%,
-        rgba(239, 191, 86, 0.4) 50%,
-        transparent 100%
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.4),
+        transparent
     );
-    opacity: 1;
-    transform: translateX(-100%);
-    transition: all 1s ease-out;
-    z-index: 1;
+    transform: rotate(45deg);
+    animation: shine 0.8s ease-in-out 0.1s;
+    z-index: 2;
     pointer-events: none;
 }
 
-.paint-active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0) brightness(1);
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
 }
 
-.paint-active::before {
-    opacity: 0;
-    transform: translateX(100%);
-}
-
-/* Atrasos escalonados */
-.image-item:nth-child(1) .paint-element { transition-delay: 0.1s; }
-.image-item:nth-child(2) .paint-element { transition-delay: 0.2s; }
-.image-item:nth-child(3) .paint-element { transition-delay: 0.3s; }
-.image-item:nth-child(4) .paint-element { transition-delay: 0.4s; }
-.image-item:nth-child(5) .paint-element { transition-delay: 0.5s; }
-.image-item:nth-child(6) .paint-element { transition-delay: 0.6s; }
-.image-item:nth-child(7) .paint-element { transition-delay: 0.7s; }
-.image-item:nth-child(8) .paint-element { transition-delay: 0.8s; }
-
-.paint-active:hover {
-    transform: translateY(-5px) scale(1.02);
-    filter: brightness(1.1) contrast(1.1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
+/* Atrasos escalonados para cada imagem - Mais rápidos */
+.image-item:nth-child(1) .alternate-element { transition-delay: 0.02s !important; }
+.image-item:nth-child(2) .alternate-element { transition-delay: 0.04s !important; }
+.image-item:nth-child(3) .alternate-element { transition-delay: 0.06s !important; }
+.image-item:nth-child(4) .alternate-element { transition-delay: 0.08s !important; }
+.image-item:nth-child(5) .alternate-element { transition-delay: 0.1s !important; }
+.image-item:nth-child(6) .alternate-element { transition-delay: 0.12s !important; }
+.image-item:nth-child(7) .alternate-element { transition-delay: 0.14s !important; }
+.image-item:nth-child(8) .alternate-element { transition-delay: 0.16s !important; }
 
 /* Responsividade - Bootstrap Breakpoints */
 @media (max-width: 768px) {
@@ -753,29 +755,33 @@ p {
     margin-top: 15px;
   }
 
-  /* Mobile - Sem efeitos de transparência */
-  .paint-element {
+  /* Mobile - Responsividade para o novo efeito */
+  .alternate-element {
+    filter: blur(5px) !important;
+    transition: all 0.25s ease-out !important;
+  }
+  
+  .alternate-element.alternate-active {
     opacity: 1 !important;
-    transform: translateY(0) scale(1) !important;
-    filter: none !important;
-    transition: none !important;
+    transform: translateX(0) scale(1) !important;
+    filter: blur(0) !important;
   }
   
-  .paint-active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: none;
-  }
-  
-  .image-item:nth-child(n) .paint-element { 
-    transition-delay: 0s !important;
-  }
+  /* Delays escalonados para mobile - Mais rápidos */
+  .image-item:nth-child(1) .alternate-element { transition-delay: 0.01s !important; }
+  .image-item:nth-child(2) .alternate-element { transition-delay: 0.02s !important; }
+  .image-item:nth-child(3) .alternate-element { transition-delay: 0.03s !important; }
+  .image-item:nth-child(4) .alternate-element { transition-delay: 0.04s !important; }
+  .image-item:nth-child(5) .alternate-element { transition-delay: 0.05s !important; }
+  .image-item:nth-child(6) .alternate-element { transition-delay: 0.06s !important; }
+  .image-item:nth-child(7) .alternate-element { transition-delay: 0.07s !important; }
+  .image-item:nth-child(8) .alternate-element { transition-delay: 0.08s !important; }
 
-  .paint-element::before {
+  .alternate-element::before {
     display: none;
   }
   
-  .paint-active::before {
+  .alternate-element::after {
     display: none;
   }
 }
@@ -849,4 +855,58 @@ p {
 
 .h-100 {
   height: 100% !important;
+}
+
+/* Seção de Contato - Tamanhos de Fonte Ajustados */
+.text-avaliacao {
+  color: #efbf56 !important;
+  font-size: 32px !important;
+  font-weight: bold !important;
+  margin-bottom: 2rem !important;
+}
+
+.text h2 {
+  font-size: 64px !important;
+  margin-bottom: 3rem !important;
+  font-weight: 700 !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.horarios {
+  font-size: 18px !important;
+  margin-top: 1.2rem !important;
+}
+
+/* Efeito de hover nas imagens da seção RESULTADOS - apenas desktop */
+@media (min-width: 769px) {
+  .image-item {
+    cursor: pointer; /* Cursor de mãozinha quando passa o mouse */
+  }
+
+  .image-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+    z-index: 1;
+  }
+
+  .image-item:hover::before {
+    opacity: 1;
+  }
+
+  .image-item:hover img {
+    filter: brightness(0.7);
+    transform: scale(1.05);
+  }
 } 

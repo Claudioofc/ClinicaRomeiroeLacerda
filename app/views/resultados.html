@@ -1,22 +1,22 @@
 <section class="white-bg section">
-    <div class="main-content grid-one-content">
-        <div class="grid-two-columns">
-            <div class="left-column">
-                <h2 class="grid-main-heading">{{resultados.title}}</h2>
+    <div class="main-content">
+        <div class="resultados-container">
+            <div class="resultados-left">
+                <h2 class="resultados-title">{{resultados.title}}</h2>
             </div>
-            <div class="right-column">
-                <p class="grid-description">{{resultados.description}}</p>
+            <div class="resultados-right">
+                <p class="resultados-description">{{resultados.description}}</p>
             </div>
         </div>
         <div class="image-grid">
             <div class="image-item" ng-repeat="img in resultados.images">
-                <img ng-src="{{img.src}}" alt="{{img.alt}}">
+                <img ng-src="{{img.src}}" alt="{{img.alt}}" class="alternate-element" ng-class="$index % 2 === 0 ? 'alternate-from-left' : 'alternate-from-right'">
             </div>
         </div>
         <div class="agenda-button-container">
             <a ng-href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
                 class="agenda-button" target="_blank" ng-click="trackWhatsAppClick('Resultados')">
-                <i class="fab fa-whatsapp"></i> Agende sua Transformação
+                <i class="fab fa-whatsapp"></i> Agenda Aberta
             </a>
         </div>
     </div>

@@ -169,10 +169,28 @@ angular.module('clinicaApp', [
     }
   }
 
-  // Inicialização dos rastreamentos
+  // Efeito de montagem alternada nas imagens
+  $scope.initAlternateEffect = function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('alternate-active');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.alternate-element').forEach(img => {
+      observer.observe(img);
+    });
+  };
+
+  // Inicialização dos rastreamentos e efeitos
   angular.element(document).ready(function() {
     trackReferrer();
     trackLocation();
     trackUTM();
+    $scope.initAlternateEffect();
   });
 }]); 

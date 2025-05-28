@@ -85,7 +85,7 @@
                 <div class="image-grid">
                     <div class="image-item" ng-repeat="i in [1,2,3,4,5,6,7,8]">
                         <img ng-src="assets/img/Foto-resina{{i}}.jpg" alt="Resultado {{i}}" 
-                             class="paint-element" fade-rotate-effect>
+                             class="alternate-element" ng-class="$index % 2 === 0 ? 'alternate-from-left' : 'alternate-from-right'">
                     </div>
                 </div>
                 <div class="text-center mt-4">
@@ -121,7 +121,7 @@
                         
                         <div class="lentes-image-item">
                             <img src="assets/img/Foto-3 sorriso.jpg" alt="Lente 1" 
-                                 class="img-fluid paint-element" fade-rotate-effect>
+                                 class="img-fluid alternate-element alternate-from-left">
                         </div>
                     </div>
                     
@@ -206,7 +206,7 @@
                     <div class="col-lg-4">
                         <div class="tratamentos-img">
                             <img src="assets/img/Imagem-clinico.png" alt="Outros Tratamentos" 
-                                 class="img-fluid paint-element" fade-rotate-effect>
+                                 class="img-fluid alternate-element alternate-from-right">
                         </div>
                     </div>
                 </div>
@@ -284,6 +284,5 @@
     <script src="app/app.js"></script>
     <script src="app/controllers/mainController.js"></script>
     <script src="app/services/analyticsService.js"></script>
-    <script src="app/directives/puzzleEffect.js"></script>
 </body>
 </html> 

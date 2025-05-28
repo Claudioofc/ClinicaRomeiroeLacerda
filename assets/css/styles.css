@@ -49,13 +49,6 @@ h2 {
   font-weight: 700;
 }
 
-.grid-main-heading {
-  font-size: 55px;
-  margin-bottom: 2rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
 h3 {
   font-size: 3rem;
 }
@@ -70,7 +63,7 @@ p {
 }
 
 .main-bg {
-  background-color: #000000;
+  background-color: #333333; /* Mesma cor dos botões Procedimentos */
   color: var(--white-color);
 }
 
@@ -98,7 +91,8 @@ p {
 
 /* Ajuste específico para a seção de Contato */
 #contato {
-  min-height: 40vh; /* Reduzi a altura da seção de contato */
+  min-height: 50vh; /* Altura reduzida para desktop */
+  padding: 2rem 0; /* Padding reduzido para desktop */
 }
 
 /* Menu */
@@ -113,14 +107,6 @@ p {
   border-bottom: 0.1rem solid var(--light-gray-color);
   padding: 1rem 0;
   backdrop-filter: blur(10px);
-}
-
-.left-column, .grid-main-heading {
-  text-align: start;
-}
-
-.right-column, .grid-description {
-  text-align: start;
 }
 
 .menu-content {
@@ -142,10 +128,12 @@ p {
 }
 
 .menu ul li a {
-  font-size: 1.8rem;
+  font-size: 2.2rem; /* Aumentando o tamanho da fonte */
   color: var(--primary-color);
   text-decoration: none;
   transition: color 0.3s ease;
+  font-weight: 500; /* Adicionando peso médio à fonte */
+  letter-spacing: 0.5px; /* Pequeno espaçamento entre letras */
 }
 
 .menu ul li a:hover {
@@ -154,7 +142,7 @@ p {
 
 .destaque {
   color: var(--secondary-color);
-  font-weight: bold;
+  font-weight: 600; /* Peso um pouco maior para destaque */
 }
 
 /* Header com Efeito Shrink */
@@ -191,10 +179,12 @@ p {
 
 /* Estilo para os links do menu no header */
 #header nav ul li a {
-  font-size: 1.8rem;
-  color: #000; /* Letras brancas */
+  font-size: 2.2rem; /* Mesmo tamanho do menu principal */
+  color: #000;
   text-decoration: none;
-  transition: color 0.3s ease; /* Transição suave para o hover */
+  transition: color 0.3s ease;
+  font-weight: 500; /* Mesmo peso da fonte */
+  letter-spacing: 0.5px; /* Mesmo espaçamento entre letras */
 }
 
 /* Efeito de hover nos links do menu */
@@ -291,8 +281,6 @@ p {
   }
 }
 
-/* Efeito de brilho removido */
-
 /* Responsividade para o efeito */
 @media (max-width: 768px) {
   /* Remove borda dourada do mobile */
@@ -355,9 +343,14 @@ p {
 }
 
 .text h2 {
-  font-size: 48px;
-  margin-bottom: 2rem;
+  font-size: 64px; /* Aumentando para ficar igual à imagem */
+  margin-bottom: 3rem; /* Aumentando a margem */
   font-weight: 700;
+  line-height: 1.1; /* Melhorando o espaçamento entre linhas */
+  text-align: center; /* Centralizando o texto */
+  max-width: 1200px; /* Aumentando a largura máxima */
+  margin-left: auto; /* Centralizando horizontalmente */
+  margin-right: auto; /* Centralizando horizontalmente */
 }
 
 /* Grid de Imagens */
@@ -393,28 +386,6 @@ p {
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease, filter 0.3s ease;
-}
-
-/* Efeito de Escurecimento ao Passar o Mouse */
-.image-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 10px;
-}
-
-.image-item:hover::before {
-  opacity: 1;
-}
-
-.image-item:hover img {
-  filter: brightness(0.8);
 }
 
 /* Botão de Agenda */
@@ -551,11 +522,11 @@ p {
 .lentes-tipo-subtitle {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(239, 191, 86); /* Cor das letras */
+  color: #efbf56; /* Cor das letras em bege */
   margin-bottom: 0.5rem;
   width: 100%;
   text-align: left;
-  background-color: #000000; /* Fundo preto */
+  background-color: #333333; /* Fundo escuro */
   padding: 10px 15px; /* Adiciona um pouco de espaço interno */
   text-transform: uppercase;
   display: flex;
@@ -567,7 +538,7 @@ p {
 .lentes-tipo-subtitle::after {
   content: "+";
   font-size: 24px;
-  color: rgb(239, 191, 86); /* Cor do sinal de + */
+  color: #efbf56; /* Cor do sinal de + em bege */
   font-weight: normal;
   transition: transform 0.3s ease;
   flex-shrink: 0;
@@ -611,7 +582,7 @@ p {
 /* Seção de Tratamentos */
 #tratamentos {
   padding: 5rem 0;
-  background-color: #fefcf7; /* Cor de fundo da seção */
+  background-color: #e8e8e8; /* Cor de fundo cinza mais escura */
 }
 
 .tratamentos-container {
@@ -676,7 +647,7 @@ p {
 }
 
 .tab-button {
-  background-color: var(--primary-color);
+  background-color: #333333;
   color: white;
   border: none;
   padding: 15px 30px;
@@ -688,13 +659,14 @@ p {
 }
 
 .tab-button.active {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
+  background-color: #333333;
+  color: #efbf56;
   font-weight: 700;
 }
 
 .tab-button:hover:not(.active) {
-  background-color: rgba(0, 0, 0, 0.8);
+  /* Removendo o efeito de hover */
+  background-color: #333333;
 }
 
 .tabs-content {
@@ -783,21 +755,22 @@ p {
 .avaliacao-container {
   width: 100%;
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 30px;
+  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .text-bege {
   color: #efbf56;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .text-avaliacao {
   color: #efbf56;
-  font-size: 27px;
+  font-size: 32px; /* Aumentando significativamente */
   font-weight: bold;
+  margin-bottom: 2rem; /* Aumentando margem */
 }
 
 .text-avaliacao {
@@ -809,31 +782,29 @@ p {
   align-items: center;
   background-image: linear-gradient(90deg, #5CD466 0%, #2E6A33 100%);
   color: white;
-  padding: 1rem 2rem;
-  font-size: 30px;
+  padding: 1.2rem 2rem; /* Aumentando o padding */
+  font-size: 32px; /* Aumentando significativamente */
   font-weight: bold;
   text-decoration: none;
-  margin-top: 1rem;
+  margin-top: 1.5rem; /* Aumentando margem */
   transition: transform 0.3s ease;
 }
 
 .whatsapp-button i {
-  margin-right: 1rem;
-  font-size: 2rem;
+  margin-right: 1rem; /* Aumentando margem */
+  font-size: 2.2rem; /* Aumentando tamanho do ícone */
 }
 
 .whatsapp-button:hover {
   transform: scale(1.05);
 }
 
-
-
 .horarios {
   color: white;
-  font-size: 15px;
-  margin-top: 1rem;
+  font-size: 18px; /* Aumentando de 14px para 18px */
+  margin-top: 1.2rem; /* Aumentando margem */
   text-align: center;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
 /* Footer */
@@ -1021,17 +992,31 @@ p {
   }
 
   #header nav ul li a {
-    font-size: 1.8rem;
+    font-size: 2rem; /* Tamanho adequado para mobile */
     font-weight: 500;
+    letter-spacing: 0.3px;
   }
 
   #header.shrink nav ul li a {
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Tamanho menor quando o header encolhe */
   }
 
   /* Ajustes para o texto em mobile */
   .text {
-    font-size: 22px;
+    font-size: 18px; /* Reduzindo ainda mais para mobile */
+  }
+
+  .text h2 {
+    font-size: 42px; /* Tamanho adequado para mobile */
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  #contato {
+    min-height: 50vh; /* Altura menor para mobile */
+    padding: 1.5rem 0;
   }
 
   /* Ajustes para o footer em mobile */
@@ -1043,8 +1028,6 @@ p {
   .footer-column {
     min-width: 100%;
   }
-
-
 
   /* Ajustes para a seção de lentes em mobile */
   .lentes-grid {
@@ -1074,25 +1057,53 @@ p {
     height: auto; /* Altura automática para manter a proporção */
     max-width: 100%; /* Garante que a imagem não ultrapasse o container */
   }
+
+  .text-avaliacao {
+    font-size: 26px; /* Tamanho adequado para mobile */
+    margin-bottom: 1.5rem;
+  }
+
+  .whatsapp-button {
+    font-size: 26px; /* Tamanho adequado para mobile */
+    padding: 1rem 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .whatsapp-button i {
+    font-size: 2rem;
+    margin-right: 0.8rem;
+  }
+
+  .horarios {
+    font-size: 16px; /* Tamanho adequado para mobile */
+    margin-top: 1rem;
+  }
 }
 
-/* Novo efeito de brilho nas imagens */
-.paint-element {
-    opacity: 0;
-    position: relative;
-    transform: translateY(50px) scale(0.9);
-    filter: blur(5px) brightness(0.7);
-    transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    overflow: hidden;
+/* Efeito de Montagem Alternada - Versão Simplificada */
+.alternate-element {
+    opacity: 0 !important;
+    position: relative !important;
+    transition: all 0.3s ease-out !important;
+    filter: blur(8px) !important;
 }
 
-.paint-active {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0) brightness(1);
+.alternate-element.alternate-from-left {
+    transform: translateX(-100px) scale(0.8) !important;
 }
 
-.paint-active::after {
+.alternate-element.alternate-from-right {
+    transform: translateX(100px) scale(0.8) !important;
+}
+
+.alternate-element.alternate-active {
+    opacity: 1 !important;
+    transform: translateX(0) scale(1) !important;
+    filter: blur(0) !important;
+}
+
+/* Efeito de brilho após a montagem */
+.alternate-element.alternate-active::after {
     content: '';
     position: absolute;
     top: -50%;
@@ -1102,11 +1113,13 @@ p {
     background: linear-gradient(
         45deg,
         transparent,
-        rgba(255, 255, 255, 0.3),
+        rgba(255, 255, 255, 0.4),
         transparent
     );
     transform: rotate(45deg);
-    animation: shine 1.5s ease-in-out;
+    animation: shine 0.8s ease-in-out 0.1s;
+    z-index: 2;
+    pointer-events: none;
 }
 
 @keyframes shine {
@@ -1118,60 +1131,149 @@ p {
     }
 }
 
-/* Atrasos escalonados para cada imagem */
-.image-item:nth-child(1) .paint-element { transition-delay: 0.1s; }
-.image-item:nth-child(2) .paint-element { transition-delay: 0.2s; }
-.image-item:nth-child(3) .paint-element { transition-delay: 0.3s; }
-.image-item:nth-child(4) .paint-element { transition-delay: 0.4s; }
-.image-item:nth-child(5) .paint-element { transition-delay: 0.5s; }
-.image-item:nth-child(6) .paint-element { transition-delay: 0.6s; }
-.image-item:nth-child(7) .paint-element { transition-delay: 0.7s; }
-.image-item:nth-child(8) .paint-element { transition-delay: 0.8s; }
-
-/* Efeito hover melhorado */
-.paint-active:hover {
-    transform: translateY(-5px) scale(1.02);
-    filter: brightness(1.1) contrast(1.1);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
+/* Atrasos escalonados para cada imagem - Mais rápidos */
+.image-item:nth-child(1) .alternate-element { transition-delay: 0.02s !important; }
+.image-item:nth-child(2) .alternate-element { transition-delay: 0.04s !important; }
+.image-item:nth-child(3) .alternate-element { transition-delay: 0.06s !important; }
+.image-item:nth-child(4) .alternate-element { transition-delay: 0.08s !important; }
+.image-item:nth-child(5) .alternate-element { transition-delay: 0.1s !important; }
+.image-item:nth-child(6) .alternate-element { transition-delay: 0.12s !important; }
+.image-item:nth-child(7) .alternate-element { transition-delay: 0.14s !important; }
+.image-item:nth-child(8) .alternate-element { transition-delay: 0.16s !important; }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .paint-element {
-        opacity: 0 !important;
-        transform: translateY(30px) scale(0.95) !important;
-        filter: blur(3px) brightness(0.8) !important;
-        transition: all 0.8s ease-out !important;
+    .alternate-element {
+        filter: blur(5px) !important;
+        transition: all 0.25s ease-out !important;
     }
     
-    .paint-active {
+    .alternate-element.alternate-active {
         opacity: 1 !important;
-        transform: translateY(0) scale(1) !important;
-        filter: blur(0) brightness(1) !important;
+        transform: translateX(0) scale(1) !important;
+        filter: blur(0) !important;
     }
     
-    /* Delays escalonados para mobile */
-    .image-item:nth-child(1) .paint-element { transition-delay: 0.1s !important; }
-    .image-item:nth-child(2) .paint-element { transition-delay: 0.2s !important; }
-    .image-item:nth-child(3) .paint-element { transition-delay: 0.3s !important; }
-    .image-item:nth-child(4) .paint-element { transition-delay: 0.4s !important; }
-    .image-item:nth-child(5) .paint-element { transition-delay: 0.5s !important; }
-    .image-item:nth-child(6) .paint-element { transition-delay: 0.6s !important; }
-    .image-item:nth-child(7) .paint-element { transition-delay: 0.7s !important; }
-    .image-item:nth-child(8) .paint-element { transition-delay: 0.8s !important; }
+    /* Delays escalonados para mobile - Mais rápidos */
+    .image-item:nth-child(1) .alternate-element { transition-delay: 0.01s !important; }
+    .image-item:nth-child(2) .alternate-element { transition-delay: 0.02s !important; }
+    .image-item:nth-child(3) .alternate-element { transition-delay: 0.03s !important; }
+    .image-item:nth-child(4) .alternate-element { transition-delay: 0.04s !important; }
+    .image-item:nth-child(5) .alternate-element { transition-delay: 0.05s !important; }
+    .image-item:nth-child(6) .alternate-element { transition-delay: 0.06s !important; }
+    .image-item:nth-child(7) .alternate-element { transition-delay: 0.07s !important; }
+    .image-item:nth-child(8) .alternate-element { transition-delay: 0.08s !important; }
 }
 
-/* Remover efeitos antigos */
+/* Remover todos os efeitos antigos de imagens */
+.paint-element,
+.paint-active,
 .slice-element,
 .slice-active,
 .slice-overlay,
 .puzzle-container,
 .puzzle-piece,
-.puzzle-piece.glow {
+.puzzle-piece.glow,
+.fade-rotate-element,
+.fade-rotate-active,
+.reveal-element,
+.reveal-active,
+.reveal-element::before,
+.reveal-active::before,
+.paint-element::before,
+.paint-active::before,
+.paint-element::after,
+.paint-active::after {
     display: none !important;
+    opacity: 0 !important;
+    animation: none !important;
+    transition: none !important;
 }
 
-@keyframes puzzlePieceGlow {
-    0%, 100% { opacity: 0; }
+/* Seção de Resultados - Layout Específico */
+.resultados-container {
+  display: flex;
+  gap: 4rem;
+  margin-bottom: 3rem;
+  align-items: flex-start;
+}
+
+.resultados-left {
+  flex: 0 0 auto;
+  min-width: 300px;
+}
+
+.resultados-right {
+  flex: 1;
+}
+
+.resultados-title {
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.resultados-description {
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: var(--primary-color);
+  margin: 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+/* Responsividade para a seção de Resultados */
+@media (max-width: 768px) {
+  .resultados-container {
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .resultados-left {
+    min-width: auto;
+  }
+  
+  .resultados-title {
+    font-size: 40px;
+    text-align: center;
+  }
+  
+  .resultados-description {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+}
+
+/* Efeito de hover nas imagens da seção RESULTADOS - apenas desktop */
+@media (min-width: 769px) {
+  .image-item {
+    cursor: pointer; /* Cursor de mãozinha quando passa o mouse */
+  }
+
+  .image-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+    z-index: 1;
+  }
+
+  .image-item:hover::before {
+    opacity: 1;
+  }
+
+  .image-item:hover img {
+    filter: brightness(0.7);
+    transform: scale(1.05);
+  }
 }
