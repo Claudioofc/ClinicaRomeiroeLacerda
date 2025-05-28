@@ -1076,43 +1076,14 @@ p {
   }
 }
 
-/* Novo efeito de montagem suave */
+/* Novo efeito de brilho nas imagens */
 .paint-element {
     opacity: 0;
     position: relative;
     transform: translateY(50px) scale(0.9);
     filter: blur(5px) brightness(0.7);
     transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.paint-element::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, 
-        rgba(239, 191, 86, 0.8) 0%,
-        rgba(239, 191, 86, 0.4) 50%,
-        transparent 100%
-    );
-    opacity: 1;
-    transform: translateX(-100%);
-    transition: all 1s ease-out;
-    z-index: 1;
-    pointer-events: none;
-}
-
-/* Remove o overlay em mobile */
-@media (max-width: 768px) {
-    .paint-element::before {
-        display: none !important;
-    }
-    
-    .paint-active::before {
-        display: none !important;
-    }
+    overflow: hidden;
 }
 
 .paint-active {
@@ -1121,12 +1092,31 @@ p {
     filter: blur(0) brightness(1);
 }
 
-.paint-active::before {
-    opacity: 0;
-    transform: translateX(100%);
+.paint-active::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 1.5s ease-in-out;
 }
 
-/* Efeito de brilho das imagens removido */
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
 
 /* Atrasos escalonados para cada imagem */
 .image-item:nth-child(1) .paint-element { transition-delay: 0.1s; }
@@ -1149,10 +1139,10 @@ p {
 /* Responsividade */
 @media (max-width: 768px) {
     .paint-element {
-        opacity: 0 !important; /* Inicia invisível em mobile */
-        transform: translateY(30px) scale(0.95) !important; /* Efeito mais sutil em mobile */
-        filter: blur(3px) brightness(0.8) !important; /* Filtros mais suaves em mobile */
-        transition: all 0.8s ease-out !important; /* Transição mais rápida em mobile */
+        opacity: 0 !important;
+        transform: translateY(30px) scale(0.95) !important;
+        filter: blur(3px) brightness(0.8) !important;
+        transition: all 0.8s ease-out !important;
     }
     
     .paint-active {
@@ -1172,7 +1162,10 @@ p {
     .image-item:nth-child(8) .paint-element { transition-delay: 0.8s !important; }
 }
 
-/* Remover estilos antigos do quebra-cabeça */
+/* Remover efeitos antigos */
+.slice-element,
+.slice-active,
+.slice-overlay,
 .puzzle-container,
 .puzzle-piece,
 .puzzle-piece.glow {
