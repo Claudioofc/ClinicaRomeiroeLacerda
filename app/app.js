@@ -11,6 +11,14 @@ angular.module('clinicaApp', [
       templateUrl: 'app/views/home.html',
       controller: 'MainController'
     })
+    .when('/resultados', {
+      templateUrl: 'app/views/resultados.html',
+      controller: 'ResultadosController'
+    })
+    .when('/contato', {
+      templateUrl: 'app/views/contato.html',
+      controller: 'ContatoController'
+    })
     .otherwise({redirectTo: '/'});
 
   // Configuração para usar links sem #
@@ -192,5 +200,94 @@ angular.module('clinicaApp', [
     trackLocation();
     trackUTM();
     $scope.initAlternateEffect();
+  });
+
+  // Garantir que a página sempre comece no topo ao carregar/recarregar
+  window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+  });
+
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      window.scrollTo(0, 0);
+    }, 100);
+  });
+
+  // Garantir que ao clicar no logo, a página vá para o topo
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoLink = document.querySelector('.navbar-brand');
+    const logoImg = document.querySelector('.logo');
+    const menuToggle = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('#navbarNav');
+    let currentScrollPosition = 0;
+    
+    function scrollToTop(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+    
+    if (logoLink) {
+      logoLink.addEventListener('click', scrollToTop);
+    }
+    
+    if (logoImg) {
+      logoImg.addEventListener('click', scrollToTop);
+      logoImg.style.cursor = 'pointer';
+    }
+
+    // Manter posição da página ao abrir/fechar menu toggle no Bootstrap
+    if (menuToggle && navbarCollapse) {
+      navbarCollapse.addEventListener('show.bs.collapse', function() {
+        // Menu está abrindo - salvar posição atual
+        currentScrollPosition = window.pageYOffset;
+        document.body.style.position = 'fixed';
+        document.body.style.top = `-${currentScrollPosition}px`;
+        document.body.style.width = '100%';
+      });
+
+      navbarCollapse.addEventListener('hide.bs.collapse', function() {
+        // Menu está fechando - restaurar posição
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        window.scrollTo(0, currentScrollPosition);
+      });
+    }
+  });
+
+  // Efeito de montagem alternada para imagens
+  function initAlternateEffect() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('alternate-active');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    document.querySelectorAll('.alternate-element').forEach(element => {
+      observer.observe(element);
+    });
+  }
+
+  // Inicializar efeitos quando a página carregar
+  document.addEventListener('DOMContentLoaded', function() {
+    initAlternateEffect();
+  });
+
+  // Efeito de shrink no header
+  window.addEventListener('scroll', function() {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+      navbar.classList.add('shrink');
+    } else {
+      navbar.classList.remove('shrink');
+    }
   });
 }]); 

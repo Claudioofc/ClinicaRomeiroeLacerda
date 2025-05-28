@@ -285,60 +285,111 @@
     </footer>
 
     <script>
-        // Função para mostrar/ocultar texto ao clicar nas caixas
-        function toggleTexto(element) {
-            const texto = element.querySelector('.hidden-texto');
-            const subtitle = element.querySelector('.lentes-tipo-subtitle');
-            texto.classList.toggle('show-texto');
-            subtitle.classList.toggle('active');
-        }
+        // Garantir que a página sempre comece no topo ao carregar/recarregar
+        window.addEventListener('beforeunload', function() {
+            window.scrollTo(0, 0);
+        });
 
-        // Função para controlar o efeito de shrink/expand no header ao rolar a página
-        window.addEventListener('scroll', function () {
-            const header = document.getElementById('header');
-            const scrollPosition = window.scrollY || window.pageYOffset;
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
 
-            // Adiciona a classe "shrink" se o scroll for maior que 100px
-            if (scrollPosition > 100) {
-                header.classList.add('shrink');
-            } else {
-                header.classList.remove('shrink');
+        // Garantir que ao clicar no logo, a página vá para o topo
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoLink = document.getElementById('logo-link');
+            const logoImg = document.querySelector('.logo');
+            const menuToggle = document.querySelector('.close-menu');
+            let currentScrollPosition = 0;
+            
+            function scrollToTop(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            if (logoLink) {
+                logoLink.addEventListener('click', scrollToTop);
+            }
+            
+            if (logoImg) {
+                logoImg.addEventListener('click', scrollToTop);
+                logoImg.style.cursor = 'pointer';
+            }
+
+            // Manter posição da página ao abrir/fechar menu toggle
+            if (menuToggle) {
+                menuToggle.addEventListener('change', function() {
+                    if (this.checked) {
+                        // Menu está abrindo - salvar posição atual
+                        currentScrollPosition = window.pageYOffset;
+                        document.body.style.position = 'fixed';
+                        document.body.style.top = `-${currentScrollPosition}px`;
+                        document.body.style.width = '100%';
+                    } else {
+                        // Menu está fechando - restaurar posição
+                        document.body.style.position = '';
+                        document.body.style.top = '';
+                        document.body.style.width = '';
+                        window.scrollTo(0, currentScrollPosition);
+                    }
+                });
             }
         });
 
-        // Controle das abas
-        document.addEventListener('DOMContentLoaded', function () {
-            const tabButtons = document.querySelectorAll('.tab-button');
-            tabButtons.forEach((button) => {
-                button.addEventListener('click', function () {
-                    // Remove a classe 'active' de todos os botões e conteúdos
-                    tabButtons.forEach((btn) => btn.classList.remove('active'));
-                    const tabContents = document.querySelectorAll('.tab-content');
-                    tabContents.forEach((content) => content.classList.remove('active'));
+        // Função para alternar texto (já existente)
+        function toggleTexto(element) {
+            const texto = element.querySelector('.hidden-texto');
+            const subtitle = element.querySelector('.lentes-tipo-subtitle');
 
-                    // Adiciona a classe 'active' ao botão e conteúdo da aba clicada
-                    const tabId = this.getAttribute('data-tab');
-                    const tabContent = document.getElementById(`tab-${tabId}`);
-                    if (tabContent) {
-                        this.classList.add('active');
-                        tabContent.classList.add('active');
-                    }
-                });
+            if (texto.classList.contains('show-texto')) {
+                texto.classList.remove('show-texto');
+                subtitle.classList.remove('active');
+            } else {
+                // Fechar outros textos abertos
+                document.querySelectorAll('.hidden-texto').forEach(t => t.classList.remove('show-texto'));
+                document.querySelectorAll('.lentes-tipo-subtitle').forEach(s => s.classList.remove('active'));
+
+                // Abrir o texto clicado
+                texto.classList.add('show-texto');
+                subtitle.classList.add('active');
+            }
+        }
+
+        // Função para alternar abas (já existente)
+        function showTab(tabNumber) {
+            // Esconder todas as abas
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
             });
 
-            // Rolagem suave ao clicar na logo
-            const logoLink = document.getElementById('logo-link');
-            if (logoLink) {
-                logoLink.addEventListener('click', function (event) {
-                    event.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-            }
+            // Remover classe active de todos os botões
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
 
-            // Efeito de montagem alternada nas imagens
+            // Mostrar a aba selecionada
+            document.getElementById('tab-' + tabNumber).classList.add('active');
+
+            // Adicionar classe active ao botão clicado
+            document.querySelector('[data-tab="' + tabNumber + '"]').classList.add('active');
+        }
+
+        // Event listeners para os botões das abas
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabNumber = this.getAttribute('data-tab');
+                    showTab(tabNumber);
+                });
+            });
+        });
+
+        // Efeito de montagem alternada para imagens
+        function initAlternateEffect() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -346,18 +397,29 @@
                     }
                 });
             }, {
-                threshold: 0.1
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
 
-            document.querySelectorAll('.alternate-element').forEach(img => {
-                observer.observe(img);
+            document.querySelectorAll('.alternate-element').forEach(element => {
+                observer.observe(element);
             });
+        }
+
+        // Inicializar efeitos quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            initAlternateEffect();
         });
 
-        // Garante que a página role para o topo ao ser carregada
-        window.onload = function () {
-            window.scrollTo(0, 0);
-        };
+        // Efeito de shrink no header
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('shrink');
+            } else {
+                header.classList.remove('shrink');
+            }
+        });
     </script>
 </body>
 

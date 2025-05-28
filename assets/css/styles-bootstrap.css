@@ -62,9 +62,10 @@ h3 {
 p {
   font-size: 1.8rem !important;
   line-height: 1.6 !important;
+  padding: 0 !important;
+  text-align: left !important;
   color: var(--primary-color) !important;
   margin-bottom: 2rem !important;
-  text-align: left;
   font-weight: 400;
 }
 
@@ -246,17 +247,44 @@ p {
   color: var(--secondary-color) !important;
 }
 
-/* Grid de Imagens - Bootstrap Grid Override */
+/* Grid de Imagens - Bootstrap Override - Responsividade Completa */
 .image-grid {
   display: grid !important;
-  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
   margin-top: 1rem;
 }
 
+/* Desktop - 4 colunas */
+@media (min-width: 1200px) {
+  .image-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* Laptop/Tablet Landscape - 3 colunas */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Tablet Portrait - 3 colunas */
+@media (min-width: 769px) and (max-width: 991px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* Mobile - 2 colunas */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem;
+  }
+}
+
 .image-item {
   width: 100%;
-  height: 200px;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -291,7 +319,44 @@ p {
 }
 
 .image-item:hover img {
-  filter: brightness(0.8);
+  filter: brightness(0.7);
+  transform: scale(1.05);
+}
+
+/* Tamanhos responsivos para image-item - Bootstrap */
+/* Desktop */
+@media (min-width: 1200px) {
+  .image-item {
+    height: 200px !important;
+  }
+}
+
+/* Laptop/Tablet Landscape */
+@media (min-width: 992px) and (max-width: 1199px) {
+  .image-item {
+    height: 180px !important;
+  }
+}
+
+/* Tablet Portrait */
+@media (min-width: 769px) and (max-width: 991px) {
+  .image-item {
+    height: 160px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.8rem;
+  }
+
+  .image-item {
+    width: 165px;
+    height: 215px;
+    margin: 0 auto;
+  }
 }
 
 /* Botões - Bootstrap Override */
@@ -348,27 +413,20 @@ p {
 
 /* Seção de Lentes */
 .lentes-title {
-  font-size: 35px !important;
-  font-weight: bold !important;
-  color: #000 !important;
+  font-size: 32px !important;
+  text-align: center !important;
 }
 
 .lentes-subtitle {
-  font-size: 30px !important;
-  font-weight: bold !important;
-  color: #000 !important;
-  margin-bottom: 0.5rem;
-  text-align: left;
-  text-transform: uppercase;
+  font-size: 26px !important;
+  text-align: left !important;
 }
 
 .lentes-text {
-  font-size: 1.6rem !important;
-  line-height: 1.5 !important;
-  color: #333 !important;
-  text-align: left;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  font-size: 1.8rem !important;
+  text-align: left !important;
+  line-height: 1.6 !important;
+  padding: 0 !important;
 }
 
 .lentes-image-item img {
@@ -453,21 +511,15 @@ p {
 }
 
 .tratamentos-title {
-  font-size: 48px !important;
-  font-weight: 700 !important;
-  color: var(--primary-color) !important;
-  text-align: left;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
+  font-size: 36px !important;
+  text-align: left !important;
 }
 
 .tratamentos-text {
   font-size: 1.8rem !important;
-  color: var(--primary-color) !important;
-  text-align: left;
-  margin-bottom: 3rem;
-  line-height: 1.6;
-  font-weight: 400;
+  text-align: left !important;
+  line-height: 1.6 !important;
+  padding: 0 1rem !important;
 }
 
 .tratamentos-img img {
@@ -518,11 +570,10 @@ p {
 }
 
 .tab-pane p {
-  font-size: 1.6rem !important;
-  line-height: 1.5 !important;
-  color: #333 !important;
-  margin-bottom: 1rem;
-  font-weight: 400;
+  font-size: 1.7rem !important;
+  line-height: 1.6 !important;
+  text-align: left !important;
+  padding: 0 0.5rem !important;
 }
 
 /* WhatsApp Flutuante */
@@ -566,16 +617,14 @@ p {
   border-top: 1px solid #ccc;
   font-size: 1.6rem !important;
   color: #000 !important;
-  text-align: center;
+  text-align: center !important;
 }
 
 .footer p {
-  font-size: 1.6rem !important;
-  line-height: 1.1 !important;
-  color: #000 !important;
-  margin: 0.1rem 0 !important;
-  font-weight: 400;
-  text-align: center;
+  font-size: 1.7rem !important;
+  line-height: 1.4 !important;
+  padding: 0 1rem !important;
+  text-align: center !important;
 }
 
 .footer a {
@@ -709,6 +758,31 @@ p {
     margin: 0.5rem 0;
   }
 
+  /* Centralizar imagem principal em mobile */
+  .intro-img img {
+    object-fit: cover !important;
+    object-position: center center !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important; /* Garante altura mínima */
+    transform: none !important; /* Remove qualquer transformação que possa causar quebra */
+  }
+
+  /* Ajustes específicos para a seção home em mobile */
+  #home {
+    min-height: 100vh !important;
+    overflow: hidden !important; /* Evita quebras visuais */
+  }
+
+  .intro-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important; /* Evita quebras */
+  }
+
   .intro-text-overlay h1 {
     font-size: 36px !important;
     animation: slideInFromRight 1s ease-out 0.3s forwards;
@@ -784,6 +858,70 @@ p {
   .alternate-element::after {
     display: none;
   }
+
+  /* Ajustes para títulos h2 em mobile */
+  .text h2 {
+    font-size: 42px !important;
+    margin-bottom: 2rem !important;
+    line-height: 1.1 !important;
+    text-align: left !important;
+    max-width: 100% !important;
+  }
+
+  .resultados-title {
+    font-size: 40px !important;
+    text-align: left !important;
+  }
+
+  /* Ajustes específicos para textos em mobile */
+  .lentes-title {
+    font-size: 32px !important;
+    text-align: center !important; /* Centralizando o título principal */
+  }
+
+  .lentes-subtitle {
+    font-size: 26px !important;
+    text-align: left !important;
+  }
+
+  .lentes-text {
+    font-size: 1.8rem !important;
+    text-align: left !important;
+    line-height: 1.6 !important;
+    padding: 0 !important;
+  }
+
+  .lentes-tipos-title {
+    font-size: 22px !important;
+    text-align: left !important;
+  }
+
+  /* Ajustes para a seção de contato em mobile */
+  #contact {
+    text-align: center !important;
+  }
+
+  .avaliacao-container {
+    text-align: center !important;
+  }
+
+  .text-bege {
+    text-align: center !important;
+  }
+
+  .text-avaliacao {
+    text-align: center !important;
+  }
+
+  .btn-whatsapp {
+    text-align: center !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+  }
+
+  .horarios {
+    text-align: center !important;
+  }
 }
 
 @media (max-width: 576px) {
@@ -801,6 +939,33 @@ p {
   
   .intro-text-overlay h1 {
     font-size: 28px !important;
+  }
+
+  /* Configurações específicas para smartphones muito pequenos */
+  .intro-img img {
+    object-fit: cover !important;
+    object-position: center 30% !important; /* Ajusta o foco da imagem para uma área mais interessante */
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 100vh !important;
+    transform: none !important;
+  }
+
+  #home {
+    min-height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  .intro-text-overlay {
+    padding: 0 1rem !important; /* Reduz padding em telas muito pequenas */
+  }
+
+  .intro-text-overlay h1 {
+    font-size: 24px !important; /* Reduz ainda mais o tamanho em telas pequenas */
+  }
+
+  .intro-text-overlay p {
+    font-size: 1.4rem !important; /* Reduz tamanho do texto */
   }
 }
 
@@ -909,4 +1074,63 @@ p {
     filter: brightness(0.7);
     transform: scale(1.05);
   }
+}
+
+/* Ajustes específicos para textos em mobile */
+.resultados-description {
+  font-size: 1.8rem !important;
+  text-align: left !important;
+  line-height: 1.6 !important;
+  padding: 0 !important; /* Removendo padding lateral para alinhamento correto */
+}
+
+.lentes-tipos-title {
+  font-size: 22px !important;
+  text-align: left !important;
+}
+
+.tratamentos-title {
+  font-size: 36px !important;
+  text-align: left !important;
+}
+
+.tratamentos-text {
+  font-size: 1.8rem !important;
+  text-align: left !important;
+  line-height: 1.6 !important;
+  padding: 0 1rem !important;
+}
+
+.tab-pane p {
+  font-size: 1.7rem !important;
+  line-height: 1.6 !important;
+  text-align: left !important;
+  padding: 0 0.5rem !important;
+}
+
+.footer p {
+  font-size: 1.7rem !important;
+  line-height: 1.4 !important;
+  padding: 0 1rem !important;
+  text-align: center !important;
+}
+
+p {
+  font-size: 1.8rem !important;
+  line-height: 1.6 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+
+/* Prevenir scroll quando menu está aberto */
+body.menu-fixed {
+  position: fixed !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+/* Ajustes para o navbar collapse no mobile */
+.navbar-collapse {
+  max-height: calc(100vh - 80px) !important;
+  overflow-y: auto !important;
 } 
