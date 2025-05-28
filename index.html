@@ -440,6 +440,92 @@
         // Inicializar efeitos quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
             initAlternateEffect();
+            
+            // Bloquear seleção de imagens em mobile
+            function disableImageSelection() {
+                const images = document.querySelectorAll('img');
+                
+                images.forEach(img => {
+                    // Prevenir eventos de toque e mouse
+                    img.addEventListener('touchstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, { passive: false });
+                    
+                    img.addEventListener('touchmove', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, { passive: false });
+                    
+                    img.addEventListener('touchend', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    }, { passive: false });
+                    
+                    img.addEventListener('contextmenu', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    });
+                    
+                    img.addEventListener('selectstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    });
+                    
+                    img.addEventListener('dragstart', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        return false;
+                    });
+                    
+                    // Desabilitar seleção via CSS também
+                    img.style.webkitUserSelect = 'none';
+                    img.style.mozUserSelect = 'none';
+                    img.style.msUserSelect = 'none';
+                    img.style.userSelect = 'none';
+                    img.style.webkitTouchCallout = 'none';
+                    img.style.webkitTapHighlightColor = 'transparent';
+                    img.style.pointerEvents = 'none';
+                    img.style.touchAction = 'none';
+                });
+                
+                // Bloquear também para containers de imagens
+                const imageContainers = document.querySelectorAll('.image-item, .image-grid, .lentes-image-item, .tratamentos-img, .intro-img');
+                imageContainers.forEach(container => {
+                    container.addEventListener('touchstart', function(e) {
+                        if (e.target.tagName === 'IMG') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    }, { passive: false });
+                    
+                    container.addEventListener('contextmenu', function(e) {
+                        if (e.target.tagName === 'IMG') {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            return false;
+                        }
+                    });
+                });
+            }
+            
+            // Aplicar bloqueio apenas em dispositivos móveis
+            if (window.innerWidth <= 768 || 'ontouchstart' in window) {
+                disableImageSelection();
+            }
+            
+            // Reaplica o bloqueio se a janela for redimensionada para mobile
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 768) {
+                    disableImageSelection();
+                }
+            });
         });
 
         // Efeito de shrink no header
