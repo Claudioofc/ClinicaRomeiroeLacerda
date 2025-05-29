@@ -234,6 +234,10 @@ p {
   position: relative !important;
   left: 0 !important;
   right: 0 !important;
+  /* Novo efeito: vem de cima para o centro */
+  transform: translateY(-100px);
+  opacity: 0;
+  animation: slideInFromTop 1.2s ease-out 0.5s forwards;
 }
 
 .intro-text-overlay p {
@@ -251,15 +255,20 @@ p {
   position: relative !important;
   left: 0 !important;
   right: 0 !important;
+  /* Novo efeito: vem de cima para o centro com delay */
+  transform: translateY(-100px);
+  opacity: 0;
+  animation: slideInFromTop 1.2s ease-out 1.2s forwards;
 }
 
-@keyframes slideInFromRight {
+/* Nova animação: deslizar de cima para o centro */
+@keyframes slideInFromTop {
   0% {
-    transform: translateX(100%);
+    transform: translateY(-100px);
     opacity: 0;
   }
   100% {
-    transform: translateX(0);
+    transform: translateY(0);
     opacity: 1;
   }
 }
