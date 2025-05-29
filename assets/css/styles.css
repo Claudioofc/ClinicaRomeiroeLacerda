@@ -235,47 +235,55 @@ p {
 }
 
 .intro-text-overlay {
-  position: relative;
-  z-index: 2;
-  color: white;
-  max-width: 800px;
-  padding: 0 2rem;
-  overflow: hidden; /* Para esconder o texto durante a animação */
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  margin: 0 auto;
+  position: relative !important;
+  z-index: 2 !important;
+  color: white !important;
+  max-width: 100% !important;
+  padding: 0 1rem !important;
+  text-align: center !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  transform: none !important;
 }
 
 .intro-text-overlay h1 {
-  font-size: 48px;
-  margin-bottom: 2rem;
-  font-weight: 700;
-  position: relative; /* Necessário para o pseudo-elemento */
-  /* Efeito de entrada da direita */
-  transform: translateX(100%);
-  opacity: 0;
-  animation: slideInFromRight 1.2s ease-out 0.5s forwards;
-  text-align: center;
-  color: white;
-  width: 100%;
+  font-size: 48px !important;
+  line-height: 1.1 !important;
+  margin-bottom: 1rem !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: white !important;
+  font-weight: 700 !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: block !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .intro-text-overlay p {
-  font-size: 22px;
-  color: var(--secondary-color);
-  text-align: center; /* Centralizado na seção de introdução */
-  font-weight: 500; /* Peso da fonte (medium) */
-  position: relative; /* Necessário para o pseudo-elemento */
-  /* Efeito de entrada da direita com delay */
-  transform: translateX(100%);
-  opacity: 0;
-  animation: slideInFromRight 1.2s ease-out 1.2s forwards;
-  width: 100%;
-  margin: 0 auto;
+  font-size: 22px !important;
+  line-height: 1.2 !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: var(--secondary-color) !important;
+  font-weight: 500 !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  display: block !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
 }
 
 .intro-text-overlay p .text-bege {
@@ -1288,36 +1296,42 @@ p {
     font-size: 48px !important;
     line-height: 1.1 !important;
     margin-bottom: 1rem !important;
-    padding: 0 1rem !important;
+    padding: 0 !important;
     text-align: center !important;
     color: white !important;
     font-weight: 700 !important;
     width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     display: block !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
   }
   
   .intro-text-overlay p {
     font-size: 22px !important;
     line-height: 1.2 !important;
     margin-bottom: 0.5rem !important;
-    padding: 0 1rem !important;
+    padding: 0 !important;
     text-align: center !important;
     color: var(--secondary-color) !important;
     font-weight: 500 !important;
     width: 100% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     display: block !important;
+    position: relative !important;
+    left: 0 !important;
+    right: 0 !important;
   }
 
   .intro-text-overlay {
     position: relative !important;
     z-index: 2 !important;
     color: white !important;
-    max-width: 90% !important;
-    padding: 0 2rem !important;
+    max-width: 100% !important;
+    padding: 0 1rem !important;
     text-align: center !important;
     display: flex !important;
     flex-direction: column !important;
@@ -1325,8 +1339,9 @@ p {
     justify-content: center !important;
     width: 100% !important;
     margin: 0 auto !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+    left: 0 !important;
+    right: 0 !important;
+    transform: none !important;
   }
 
   /* Desabilitar seleção de todas as imagens em mobile - Configuração robusta */
