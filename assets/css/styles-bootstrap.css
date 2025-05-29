@@ -234,7 +234,7 @@ p {
   position: relative !important;
   left: 0 !important;
   right: 0 !important;
-  /* Novo efeito: vem de cima para o centro */
+  /* Efeito: vem de cima para o centro */
   transform: translateY(-100px);
   opacity: 0;
   animation: slideInFromTop 1.2s ease-out 0.5s forwards;
@@ -255,13 +255,13 @@ p {
   position: relative !important;
   left: 0 !important;
   right: 0 !important;
-  /* Novo efeito: vem de cima para o centro com delay */
-  transform: translateY(-100px);
+  /* Efeito: vem da direita para o centro */
+  transform: translateX(100%);
   opacity: 0;
-  animation: slideInFromTop 1.2s ease-out 1.2s forwards;
+  animation: slideInFromRight 1.2s ease-out 1.2s forwards;
 }
 
-/* Nova animação: deslizar de cima para o centro */
+/* Animação: deslizar de cima para o centro */
 @keyframes slideInFromTop {
   0% {
     transform: translateY(-100px);
@@ -273,8 +273,16 @@ p {
   }
 }
 
-.text-bege {
-  color: var(--secondary-color) !important;
+/* Animação: deslizar da direita para o centro */
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* Grid de Imagens - Bootstrap Override - Responsividade Completa */
@@ -878,4 +886,8 @@ p {
     line-height: 1.2 !important;
     max-width: 1000px !important;
   }
+}
+
+.text-bege {
+  color: var(--secondary-color) !important;
 } 
