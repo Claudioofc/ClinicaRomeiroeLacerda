@@ -19,7 +19,6 @@
 
 html {
   font-size: 62.5%;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -186,8 +185,8 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  filter: blur(2px);
+  opacity: 0.15;
+  filter: none;
   animation: fadeInBackground 1.5s ease-out forwards;
 }
 
@@ -197,7 +196,7 @@ p {
     transform: scale(1.1);
   }
   100% {
-    opacity: 0.3;
+    opacity: 0.15;
     transform: scale(1);
   }
 }
@@ -218,22 +217,25 @@ p {
 
 .intro-text-overlay h1 {
   font-size: 48px !important;
-  line-height: 1.1 !important;
-  margin-bottom: 1rem !important;
-  padding: 0 1rem !important;
-  text-align: center !important;
-  color: white !important;
+  margin-bottom: 2rem !important;
   font-weight: 700 !important;
+  position: relative;
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 0.5s forwards;
+  text-align: center;
+  color: white;
 }
 
 .intro-text-overlay p {
   font-size: 22px !important;
-  line-height: 1.2 !important;
-  margin-bottom: 0.5rem !important;
-  padding: 0 1rem !important;
-  text-align: center !important;
   color: var(--secondary-color) !important;
+  text-align: center !important;
   font-weight: 500 !important;
+  position: relative;
+  transform: translateX(100%);
+  opacity: 0;
+  animation: slideInFromRight 1.2s ease-out 1.2s forwards;
 }
 
 @keyframes slideInFromRight {
@@ -281,27 +283,49 @@ p {
 
 /* Mobile - 2 colunas */
 @media (max-width: 768px) {
+  /* Prevenir overflow horizontal em mobile */
+  html, body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Garantir que containers principais se ajustem */
+  .main-content, .section, .container, .container-fluid {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
   .image-grid {
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-  }
+}
 
-  .image-item {
-    width: 100%;
-    height: 200px;
+.image-item {
+  width: 100%;
+  height: 200px;
     border-radius: 10px;
-    overflow: hidden;
+  overflow: hidden;
     position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+}
 
-  .image-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
 
   /* Desabilitar seleção de todas as imagens em mobile - Configuração robusta */
   img {
@@ -727,13 +751,6 @@ p {
   text-align: left !important;
 }
 
-/* Prevenir scroll quando menu está aberto */
-body.menu-fixed {
-  position: fixed !important;
-  width: 100% !important;
-  overflow: hidden !important;
-}
-
 /* Ajustes para o navbar collapse no mobile */
 .navbar-collapse {
   max-height: calc(100vh - 80px) !important;
@@ -752,36 +769,22 @@ body.menu-fixed {
   }
   
   .intro-text-overlay h1 {
-    font-size: 48px !important;
+    font-size: 48px !important; /* Mantendo 48px mesmo para telas pequenas */
     line-height: 1.1 !important;
     margin-bottom: 1rem !important;
     padding: 0 1rem !important;
-    text-align: center !important;
-    color: white !important;
-    font-weight: 700 !important;
   }
   
   .intro-text-overlay p {
-    font-size: 22px !important;
+    font-size: 22px !important; /* Mantendo 22px mesmo para telas pequenas */
     line-height: 1.2 !important;
     margin-bottom: 0.5rem !important;
     padding: 0 1rem !important;
-    text-align: center !important;
-    color: var(--secondary-color) !important;
-    font-weight: 500 !important;
   }
   
   .intro-text-overlay {
-    position: relative !important;
-    z-index: 2 !important;
-    color: white !important;
+    padding: 0 1rem !important;
     max-width: 90% !important;
-    padding: 0 2rem !important;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 }
 
@@ -789,15 +792,37 @@ body.menu-fixed {
   grid-template-columns: repeat(2, 1fr) !important;
 }
 
-.intro-text-overlay {
-  position: relative !important;
-  z-index: 2 !important;
+/* Seção de Contato - Texto Principal */
+.text {
+  font-size: 48px !important;
+  font-weight: 700 !important;
   color: white !important;
-  max-width: 90% !important;
-  padding: 0 2rem !important;
   text-align: center !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+  line-height: 1.2 !important;
+  margin-bottom: 2rem !important;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.text br {
+  display: block !important;
+}
+
+/* Ajustes para telas grandes */
+@media (min-width: 1200px) {
+  .text {
+    font-size: 46px !important;
+    line-height: 1.2 !important;
+    max-width: 1400px !important;
+  }
+}
+
+/* Ajustes para telas médias */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .text {
+    font-size: 42px !important;
+    line-height: 1.2 !important;
+    max-width: 1000px !important;
+  }
 } 

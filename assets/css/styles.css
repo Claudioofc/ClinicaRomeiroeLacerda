@@ -16,7 +16,6 @@
 
 html {
   font-size: 62.5%;
-  scroll-behavior: smooth; /* Rolagem suave */
 }
 
 body {
@@ -171,6 +170,8 @@ p {
   border-radius: 100%;
   transition: width 0.3s ease-in-out;
   cursor: pointer;
+  pointer-events: auto !important; /* Garantir que a logo seja clicável */
+  user-select: none; /* Evitar seleção de texto */
 }
 
 #header.shrink .logo {
@@ -216,8 +217,8 @@ p {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0;
-  filter: blur(2px);
+  opacity: 0.15;
+  filter: none;
   animation: fadeInBackground 1.5s ease-out forwards;
 }
 
@@ -228,7 +229,7 @@ p {
     transform: scale(1.1);
   }
   100% {
-    opacity: 0.3;
+    opacity: 0.15;
     transform: scale(1);
   }
 }
@@ -245,6 +246,8 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .intro-text-overlay h1 {
@@ -258,6 +261,7 @@ p {
   animation: slideInFromRight 1.2s ease-out 0.5s forwards;
   text-align: center;
   color: white;
+  width: 100%;
 }
 
 .intro-text-overlay p {
@@ -270,6 +274,8 @@ p {
   transform: translateX(100%);
   opacity: 0;
   animation: slideInFromRight 1.2s ease-out 1.2s forwards;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .intro-text-overlay p .text-bege {
@@ -772,16 +778,15 @@ p {
 }
 
 .tratamentos-text {
-  font-size: 1.8rem;
-  color: var(--primary-color);
-  text-align: left; /* Alinhar o texto à esquerda */
-  margin-bottom: 3rem;
-  line-height: 1.6; /* Ajusta o espaçamento entre as linhas */
-  font-weight: 400; /* Peso da fonte (normal) */
+  font-size: 1.4rem;
+  text-align: left; /* Mudando de center para left */
+  line-height: 1.6;
+  padding: 0 !important; /* Removendo padding lateral */
+  margin-bottom: 2rem; /* Garantindo margem inferior */
 }
 
 .tratamentos-text br {
-  display: block; /* Garante que a quebra de linha funcione */
+  display: block !important; /* Garantindo que a quebra de linha funcione */
 }
 
 /* Container para conteúdo e imagem */
@@ -914,10 +919,15 @@ p {
   }
 
   .tratamentos-text {
-    font-size: 1.8rem; /* Aumentando de 1.6rem para 1.8rem */
+    font-size: 1.4rem; /* Reduzindo de 1.8rem para 1.4rem */
     text-align: left; /* Mudando de center para left */
     line-height: 1.6;
-    padding: 0 1rem;
+    padding: 0 !important; /* Removendo padding lateral */
+    margin-bottom: 2rem; /* Garantindo margem inferior */
+  }
+
+  .tratamentos-text br {
+    display: block !important; /* Garantindo que a quebra de linha funcione */
   }
 
   .tab-content p {
@@ -1041,16 +1051,6 @@ p {
   text-align: center;
 }
 
-.footer a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.footer a:hover {
-  color: var(--secondary-color);
-}
-
 .fa-instagram {
   font-size: 3rem;
   color: #E1306C;
@@ -1080,6 +1080,7 @@ p {
     display: block;
     cursor: pointer;
     z-index: 1001;
+    position: relative;
   }
 
   .menu-icon {
@@ -1176,19 +1177,26 @@ p {
     width: 60px;
   }
 
-  #header nav ul li a {
-    font-size: 1.8rem;
-    font-weight: 500;
-  }
-
-  #header.shrink nav ul li a {
-    font-size: 1.5rem;
-  }
-
   /* Ajustes para o texto em mobile */
   .text {
-    font-size: 22px;
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    padding: 0 1rem !important;
+    max-width: 95% !important;
   }
+
+  .text br {
+    display: block !important;
+  }
+
+  /* Adicionar quebra manual para mobile */
+  /* .text::after {
+    content: "Seu sorriso é nossa prioridade. Transforme-o com a nossa expertise e confiança";
+    display: block;
+    white-space: pre-line;
+  } */
 
   /* Ajustes para o footer em mobile */
   .footer-container {
@@ -1284,6 +1292,10 @@ p {
     text-align: center !important;
     color: white !important;
     font-weight: 700 !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
   }
   
   .intro-text-overlay p {
@@ -1294,6 +1306,10 @@ p {
     text-align: center !important;
     color: var(--secondary-color) !important;
     font-weight: 500 !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
   }
 
   .intro-text-overlay {
@@ -1307,10 +1323,14 @@ p {
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
   }
 
   /* Desabilitar seleção de todas as imagens em mobile - Configuração robusta */
-  img {
+  img:not(.logo) {
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
@@ -1328,6 +1348,16 @@ p {
     appearance: none !important;
     touch-action: none !important;
     -ms-touch-action: none !important;
+  }
+
+  /* Garantir que a logo permaneça clicável */
+  .logo {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
   }
 
   /* Desabilitar seleção para containers de imagens */
@@ -1468,7 +1498,7 @@ p {
 .paint-active::before,
 .paint-element::after,
 .paint-active::after {
-    display: none !important;
+        display: none !important;
     opacity: 0 !important;
     animation: none !important;
     transition: none !important;
@@ -1566,8 +1596,34 @@ p {
 
 /* Responsividade */
 @media (max-width: 768px) {
+  /* Prevenir overflow horizontal em mobile */
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Garantir que containers principais se ajustem */
+  .main-content, .section, .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
   /* Desabilitar seleção de todas as imagens em mobile - Configuração robusta */
-  img {
+  img:not(.logo) {
     pointer-events: none !important;
     user-select: none !important;
     -webkit-user-select: none !important;
@@ -1585,6 +1641,16 @@ p {
     appearance: none !important;
     touch-action: none !important;
     -ms-touch-action: none !important;
+  }
+
+  /* Garantir que a logo permaneça clicável */
+  .logo {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
   }
 
   /* Desabilitar seleção para containers de imagens */
@@ -1619,8 +1685,62 @@ p {
     user-select: text !important;
     pointer-events: auto !important;
   }
+}
 
-  h1 {
-    font-size: 3rem;
+.close-menu {
+  display: none;
+}
+
+.close-menu-label,
+.menu-toggle {
+  display: block;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative;
+  text-decoration: none !important;
+}
+
+.close-menu-label:focus,
+.menu-toggle:focus {
+  outline: none;
+}
+
+.close-menu-label:hover,
+.menu-toggle:hover {
+  text-decoration: none !important;
+}
+
+/* Seção de Contato - Texto Principal */
+.text {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text br {
+  display: block !important;
+}
+
+/* Ajustes para telas grandes */
+@media (min-width: 1200px) {
+  .text {
+    font-size: 46px;
+    line-height: 1.2;
+    max-width: 1400px;
+  }
+}
+
+/* Ajustes para telas médias */
+@media (min-width: 769px) and (max-width: 1199px) {
+  .text {
+    font-size: 42px;
+    line-height: 1.2;
+    max-width: 1000px;
   }
 }

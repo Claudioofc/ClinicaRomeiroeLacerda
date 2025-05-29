@@ -21,25 +21,33 @@ window.addEventListener('scroll', function () {
 document.addEventListener('DOMContentLoaded', function () {
     const closeMenuCheckbox = document.getElementById('close-menu');
     const closeMenuLabel = document.querySelector('.close-menu-label');
+    const menuToggle = document.querySelector('.menu-toggle');
+
+    // Função para alternar o menu sem causar scroll
+    function toggleMenu(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        closeMenuCheckbox.checked = !closeMenuCheckbox.checked;
+
+        // Adiciona ou remove a classe para bloquear a rolagem
+        if (closeMenuCheckbox.checked) {
+            document.body.classList.add('menu-open');
+        } else {
+            document.body.classList.remove('menu-open');
+        }
+
+        return false;
+    }
 
     if (closeMenuCheckbox && closeMenuLabel) {
-        closeMenuLabel.addEventListener('click', function (event) {
-            event.preventDefault(); // Evita o comportamento padrão do label
-            closeMenuCheckbox.checked = !closeMenuCheckbox.checked; // Alterna o estado do checkbox
-
-            // Adiciona ou remove a classe para bloquear a rolagem
-            if (closeMenuCheckbox.checked) {
-                document.body.classList.add('menu-open');
-            } else {
-                document.body.classList.remove('menu-open');
-            }
-
-            // Impede o scroll para o topo
-            return false;
-        });
-
+        closeMenuLabel.addEventListener('click', toggleMenu);
         // Remove a associação do label com o checkbox
         closeMenuLabel.removeAttribute('for');
+    }
+
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
     }
 });
 
@@ -94,11 +102,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Rolagem suave ao clicar na logo
 document.addEventListener('DOMContentLoaded', function () {
-    const logoLink = document.getElementById('logo-link');
+    const logoImg = document.getElementById('logo-link');
 
-    if (logoLink) {
-        logoLink.addEventListener('click', function (event) {
-            event.preventDefault(); // Evita o comportamento padrão do link
+    if (logoImg) {
+        logoImg.addEventListener('click', function (event) {
+            event.preventDefault(); // Evita qualquer comportamento padrão
+            event.stopPropagation(); // Impede que o evento se propague
 
             // Rola a página suavemente para o topo
             window.scrollTo({
@@ -108,11 +117,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
-
-// Garante que a página role para o topo ao ser carregada
-window.onload = function () {
-    window.scrollTo(0, 0);
-};
 
 // Função para rastrear cliques nos links do WhatsApp
 function trackWhatsAppClicks() {

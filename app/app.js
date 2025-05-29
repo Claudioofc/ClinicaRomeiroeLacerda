@@ -238,17 +238,6 @@ angular.module('clinicaApp', [
     $scope.initAlternateEffect();
   });
 
-  // Garantir que a página sempre comece no topo ao carregar/recarregar
-  window.addEventListener('beforeunload', function() {
-    window.scrollTo(0, 0);
-  });
-
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      window.scrollTo(0, 0);
-    }, 100);
-  });
-
   // Garantir que ao clicar no logo, a página vá para o topo
   document.addEventListener('DOMContentLoaded', function() {
     const logoLink = document.querySelector('.navbar-brand');
@@ -289,11 +278,6 @@ angular.module('clinicaApp', [
               toggle: false
             });
             bsCollapse.hide();
-            
-            // Restaurar posição do body se estava fixo
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
           }
           
           // Calcular posição considerando o header
@@ -310,25 +294,6 @@ angular.module('clinicaApp', [
         }
       });
     });
-
-    // Manter posição da página ao abrir/fechar menu toggle no Bootstrap
-    if (menuToggle && navbarCollapse) {
-      navbarCollapse.addEventListener('show.bs.collapse', function() {
-        // Menu está abrindo - salvar posição atual
-        currentScrollPosition = window.pageYOffset;
-        document.body.style.position = 'fixed';
-        document.body.style.top = `-${currentScrollPosition}px`;
-        document.body.style.width = '100%';
-      });
-
-      navbarCollapse.addEventListener('hide.bs.collapse', function() {
-        // Menu está fechando - restaurar posição
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.width = '';
-        window.scrollTo(0, currentScrollPosition);
-      });
-    }
   });
 
   // Efeito de montagem alternada para imagens

@@ -24,13 +24,10 @@
 <body>
     <aside>
         <input id="close-menu" class="close-menu" type="checkbox" aria-label="Close menu" role="button">
-        <label class="close-menu-label" for="close-menu" title="close menu">☰</label>
         <div class="menu white-bg" id="header">
             <div class="main-content menu-content">
                 <h1 onclick="getElementById('close-menu').checked = false;" class="Logo">
-                    <a href="#home" id="logo-link">
-                        <img src="assets/img/Logo.jpg" alt="Logo" class="logo">
-                    </a>
+                    <img src="assets/img/Logo.jpg" alt="Logo" class="logo" id="logo-link" style="cursor: pointer;">
                 </h1>
                 <nav>
                     <ul onclick="getElementById('close-menu').checked = false;">
@@ -73,30 +70,30 @@
                 </div>
             </div>
             <div class="image-grid">
-                                        <div class="image-item">
+                <div class="image-item">
                             <img src="assets/img/img-resultados-7.webp" alt="Resultado 1" class="alternate-element alternate-from-left">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina8.jpg" alt="Resultado 2" class="alternate-element alternate-from-right">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina3.jpg" alt="Resultado 3" class="alternate-element alternate-from-left">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina2.jpg" alt="Resultado 4" class="alternate-element alternate-from-right">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina4.jpg" alt="Resultado 5" class="alternate-element alternate-from-left">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina7.jpg" alt="Resultado 6" class="alternate-element alternate-from-right">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina5.jpg" alt="Resultado 7" class="alternate-element alternate-from-left">
-                        </div>
-                        <div class="image-item">
+                </div>
+                <div class="image-item">
                             <img src="assets/img/Foto-resina9.jpg" alt="Resultado 8" class="alternate-element alternate-from-right">
-                        </div>
+                </div>
             </div>
             <div class="agenda-button-container">
                 <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
@@ -166,8 +163,8 @@
         <div class="main-content">
             <h2 class="tratamentos-title"><span>outros</span><br> tratamentos</h2>
             <p class="tratamentos-text">
-                Além das facetas em resina e porcelana, oferecemos uma<br>
-                gama completa de serviços odontológicos.
+                Além das facetas em resina e porcelana, oferecemos<br>
+                uma gama completa de serviços odontológicos.
             </p>
             <div class="tratamentos-content">
                 <!-- Conteúdo à esquerda (abas) -->
@@ -243,7 +240,7 @@
         </div>
         <div class="main-content intro-content">
             <div class="intro-text-content">
-                <h2 class="text">Seu sorriso é nossa prioridade. Transforme-o com a nossa expertise e confiança</h2>
+                <h2 class="text">Seu sorriso é nossa prioridade.<br>Transforme-o com a nossa expertise e confiança</h2>
                 <div class="contact-info">
                     <a href="https://wa.me/5531991242925?text=Vim%20pelo%20site%20Romeiro%20e%20Lacerda.%20Quero%20transformar%20meu%20sorriso!"
                         class="whatsapp-button" target="_blank">
@@ -407,7 +404,7 @@
 
             // Adicionar classe active ao botão clicado
             document.querySelector('[data-tab="' + tabNumber + '"]').classList.add('active');
-        }
+                    }
 
         // Event listeners para os botões das abas
         document.addEventListener('DOMContentLoaded', function() {
@@ -416,8 +413,8 @@
                     const tabNumber = this.getAttribute('data-tab');
                     showTab(tabNumber);
                 });
-            });
-        });
+                    });
+                });
 
         // Efeito de montagem alternada para imagens
         function initAlternateEffect() {
@@ -443,7 +440,7 @@
             
             // Bloquear seleção de imagens em mobile
             function disableImageSelection() {
-                const images = document.querySelectorAll('img');
+                const images = document.querySelectorAll('img:not(.logo)'); // Excluir a logo do bloqueio
                 
                 images.forEach(img => {
                     // Prevenir eventos de toque e mouse
@@ -494,11 +491,11 @@
                     img.style.touchAction = 'none';
                 });
                 
-                // Bloquear também para containers de imagens
+                // Bloquear também para containers de imagens (exceto o header)
                 const imageContainers = document.querySelectorAll('.image-item, .image-grid, .lentes-image-item, .tratamentos-img, .intro-img');
                 imageContainers.forEach(container => {
                     container.addEventListener('touchstart', function(e) {
-                        if (e.target.tagName === 'IMG') {
+                        if (e.target.tagName === 'IMG' && !e.target.classList.contains('logo')) {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
@@ -506,7 +503,7 @@
                     }, { passive: false });
                     
                     container.addEventListener('contextmenu', function(e) {
-                        if (e.target.tagName === 'IMG') {
+                        if (e.target.tagName === 'IMG' && !e.target.classList.contains('logo')) {
                             e.preventDefault();
                             e.stopPropagation();
                             return false;
