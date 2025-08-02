@@ -4,8 +4,7 @@ angular.module('clinicaApp.home', [])
 .controller('HomeController', ['$scope', '$window', function($scope, $window) {
     // Dados da seção intro
     $scope.intro = {
-        title: 'Romeiro e Lacerda',
-        subtitle: 'Estética e Reabilitação Oral',
+        title: 'Dr Pedro Romeiro',
         image: 'assets/img/Clinica.jpg'
     };
 

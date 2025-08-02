@@ -5,7 +5,7 @@ angular.module('clinicaApp.contato', [])
     $scope.contato = {
         whatsapp: {
             number: '5531991242925',
-            message: 'Vim pelo site Romeiro e Lacerda. Quero transformar meu sorriso!'
+            message: 'Vim pelo site Dr Pedro Romeiro. Quero transformar meu sorriso!'
         },
         endereco: {
             rua: 'Rua Exemplo, 123',
